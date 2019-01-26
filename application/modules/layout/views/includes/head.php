@@ -22,7 +22,44 @@
 <?php if (trans('cldr') != 'en') { ?>
     <script src="<?php _core_asset('js/locales/select2/' . trans('cldr') . '.js'); ?>"></script>
 <?php } ?>
-
+<script src="<?php echo base_url() . 'vendor/tinymce/js/tinymce/tinymce.min.js'; ?>"></script>
+<script>tinymce.init(
+	{ selector:'.custom-textarea, #product_description', 
+	block_formats: 'Paragraph=p;Header 1=h1;Header 2=h2;Header 3=h3', 
+	forced_root_block: false,
+	height:300,
+	toolbar: 'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent code image',
+	plugins: 'image lists',
+	images_upload_url: '<?php echo base_url() . "vendor/tinymce/upload.php"; ?>',
+  	images_upload_base_path: '<?php echo '../../../uploads/images'; ?>',
+  	images_upload_credentials: true
+	});
+	
+	tinymce.init(
+	{ selector:'#item-desc-textarea, #item-desc-textarea2', 
+	block_formats: 'Paragraph=p;Header 1=h1;Header 2=h2;Header 3=h3', 
+	forced_root_block: false,
+	height:100,
+	toolbar: 'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent code image',
+	plugins: 'image',
+	images_upload_url: '<?php echo base_url() . "vendor/tinymce/upload.php"; ?>',
+  	images_upload_base_path: '<?php echo '../../../uploads/images'; ?>',
+  	images_upload_credentials: true
+	});
+	
+	tinymce.init(
+	{ selector:'#product_image', 
+	block_formats: 'Paragraph=p;Header 1=h1;Header 2=h2;Header 3=h3', 
+	forced_root_block: false,
+	height:150,
+	toolbar: 'undo redo image',
+	plugins: 'image',
+	images_upload_url: '<?php echo base_url() . "vendor/tinymce/upload.php"; ?>',
+  	images_upload_base_path: '<?php echo '../../../uploads/images'; ?>',
+  	images_upload_credentials: true
+	});
+	
+	</script>
 <script>
     Dropzone.autoDiscover = false;
 

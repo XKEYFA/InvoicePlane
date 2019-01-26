@@ -194,6 +194,14 @@ function print_field($module, $custom_field, $cv, $class_top = '', $class_bottom
                 </select>
             <?php
             break;
+            case 'TEXTAREA':
+            ?>
+                <textarea class="form-control custom-textarea"
+                   name="custom[<?php echo $custom_field->custom_field_id; ?>]"
+                   id="<?php echo $custom_field->custom_field_id; ?>"
+                   ><?php _htmlsc($fieldValue); ?></textarea>
+            <?php
+            break;
             default:
             ?>
             <input type="text" class="form-control"

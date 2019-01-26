@@ -309,7 +309,7 @@ class Mdl_Custom_Fields extends MY_Model
 
         $column = [
             $column_name => [
-                'type' => 'VARCHAR',
+                'type' => 'TEXT',
                 'constraint' => 256,
             ],
         ];

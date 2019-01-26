@@ -27,6 +27,7 @@ $cv = $this->controller->view_data["custom_values"];
         <?php } ?>
 
         $('#btn_save_quote').click(function () {
+        	tinymce.triggerSave();
             var items = [];
             var item_order = 1;
             $('table tbody.item').each(function () {
@@ -53,7 +54,7 @@ $cv = $this->controller->view_data["custom_values"];
                     quote_discount_amount: $('#quote_discount_amount').val(),
                     quote_discount_percent: $('#quote_discount_percent').val(),
                     notes: $('#notes').val(),
-                    custom: $('input[name^=custom],select[name^=custom]').serializeArray(),
+                    custom: $('input[name^=custom],select[name^=custom],textarea[name^=custom]').serializeArray(),
                 },
                 function (data) {
                     <?php echo(IP_DEBUG ? 'console.log(data);' : ''); ?>
@@ -376,7 +377,7 @@ $cv = $this->controller->view_data["custom_values"];
                 <div class="col-xs-12 visible-xs visible-sm"><br></div>
 
             </div>
-            <div class="col-xs-12 col-md-6">
+            <div class="col-xs-12 col-md-12">
 
                 <?php $this->layout->load_view('upload/dropzone-quote-html'); ?>
 
@@ -393,26 +394,26 @@ $cv = $this->controller->view_data["custom_values"];
                                 </div>
                                 <div class="panel-body">
                                     <div class="row">
-                                        <div class="col-xs-6">
+                                        <div class="col-xs-12">
                                             <?php $i = 0; ?>
                                             <?php foreach ($custom_fields as $custom_field): ?>
                                                 <?php if ($custom_field->custom_field_location != 0) {
                                                     continue;
                                                 } ?>
                                                 <?php $i++; ?>
-                                                <?php if ($i % 2 != 0): ?>
+                                                <?php if ($i % 1 != 0): ?>
                                                     <?php print_field($this->mdl_quotes, $custom_field, $cv); ?>
                                                 <?php endif; ?>
                                             <?php endforeach; ?>
                                         </div>
-                                        <div class="col-xs-6">
+                                        <div class="col-xs-12">
                                             <?php $i = 0; ?>
                                             <?php foreach ($custom_fields as $custom_field): ?>
                                                 <?php if ($custom_field->custom_field_location != 0) {
                                                     continue;
                                                 } ?>
                                                 <?php $i++; ?>
-                                                <?php if ($i % 2 == 0): ?>
+                                                <?php if ($i % 1 == 0): ?>
                                                     <?php print_field($this->mdl_quotes, $custom_field, $cv); ?>
                                                 <?php endif; ?>
                                             <?php endforeach; ?>

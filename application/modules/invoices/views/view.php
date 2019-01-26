@@ -50,6 +50,7 @@ $cv = $this->controller->view_data["custom_values"];
         });
 
         $('#btn_save_invoice').click(function () {
+        	tinymce.triggerSave();
             var items = [];
             var item_order = 1;
             $('table tbody.item').each(function () {
@@ -76,7 +77,7 @@ $cv = $this->controller->view_data["custom_values"];
                     invoice_discount_amount: $('#invoice_discount_amount').val(),
                     invoice_discount_percent: $('#invoice_discount_percent').val(),
                     invoice_terms: $('#invoice_terms').val(),
-                    custom: $('input[name^=custom],select[name^=custom]').serializeArray(),
+                    custom: $('input[name^=custom],select[name^=custom],textarea[name^=custom]').serializeArray(),
                     payment_method: $('#payment_method').val(),
                 },
                 function (data) {
