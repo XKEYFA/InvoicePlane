@@ -24,7 +24,7 @@
                     <b><?php _htmlsc($product->product_name); ?></b>
                 </td>
                 <td>
-                    <?php echo nl2br(htmlsc($product->product_description)); ?>
+                    <div class="ellipsis ellipsis-3"><?php echo $product->product_description; ?></div>
                 </td>
                 <td class="text-right">
                     <?php echo format_currency($product->product_price); ?>

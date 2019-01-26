@@ -4,3 +4,49 @@
 
    All changes made in this file will override the default styles.
    ========================================================================== */
+   
+   html, body, p { margin: 0; padding: 0; font-family: sans-serif;line-height:22px;}
+
+.ellipsis{
+  overflow:hidden;
+  margin-bottom:1em;
+  position:relative;
+}
+
+.ellipsis:before {
+  content: "\02026";  
+  position: absolute;
+  bottom: 0; 
+  right:0;
+  width: 1.8em; 
+  height:22px;
+  margin-left: -1.8em;
+  padding-right: 5px;
+  text-align: right;
+  background-size: 100% 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), white 40%, white);
+  z-index:2;
+}
+.ellipsis::after{
+  content:"";
+  position:relative;
+  display:block;
+  float:right;
+  background:#FFF;
+  width:3em;
+  height:22px;
+  margin-top:-22px;
+  z-index:3;
+}
+
+.ellipsis{
+  max-width:500px;
+  text-align:justify;
+}
+.ellipsis-3{
+  max-height:66px;
+}
+
+.ellipsis-5{
+  max-height:110px;
+}
