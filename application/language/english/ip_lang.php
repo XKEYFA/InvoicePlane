@@ -695,5 +695,6 @@ $lang = array(
 
     // Types
     'true'                                         => 'True',
-    'false'                                        => 'False'
+    'false'                                        => 'False',
+    'product_image'									=> 'Product Image'
 );

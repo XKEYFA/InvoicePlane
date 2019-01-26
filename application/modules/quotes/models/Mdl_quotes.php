@@ -210,7 +210,10 @@ class Mdl_Quotes extends Response_Model
                 'item_description' => $quote_item->item_description,
                 'item_quantity' => $quote_item->item_quantity,
                 'item_price' => $quote_item->item_price,
-                'item_order' => $quote_item->item_order
+                'item_order' => $quote_item->item_order,
+                'item_product_image' => $quote_item->item_product_image,
+                'item_family_id' => $quote_item->item_family_id,
+                'item_oncost_price' => $quote_item->item_oncost_price
             );
 
             $this->mdl_quote_items->save(null, $db_array);

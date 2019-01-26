@@ -7,6 +7,7 @@
             <th><?php _trans('description'); ?></th>
             <th><?php _trans('quantity'); ?></th>
             <th><?php _trans('price'); ?></th>
+            <th><?php _trans('oncost'); ?></th>
             <th><?php _trans('tax_rate'); ?></th>
             <th><?php _trans('subtotal'); ?></th>
             <th><?php _trans('tax'); ?></th>
@@ -22,7 +23,9 @@
                 <input type="hidden" name="quote_id" value="<?php echo $quote_id; ?>">
                 <input type="hidden" name="item_id" value="">
                 <input type="hidden" name="item_product_id" value="">
-
+				<input type="hidden" name="item_family_id" value="">
+				<input type="hidden" name="item_product_image" value="">
+				
                 <div class="input-group">
                     <span class="input-group-addon"><?php _trans('item'); ?></span>
                     <input type="text" name="item_name" class="input-sm form-control" value="">
@@ -38,6 +41,12 @@
                 <div class="input-group">
                     <span class="input-group-addon"><?php _trans('price'); ?></span>
                     <input type="text" name="item_price" class="input-sm form-control amount" value="">
+                </div>
+            </td>
+            <td class="td-oncost">
+                <div class="input-group">
+                    <span class="input-group-addon"><?php _trans('oncost'); ?></span>
+                    <input type="text" name="item_oncost_price" class="input-sm form-control amount" value="">
                 </div>
             </td>
             <td class="td-amount ">
@@ -71,7 +80,7 @@
             <td class="td-textarea">
                 <div class="input-group">
                     <span class="input-group-addon"><?php _trans('description'); ?></span>
-                    <textarea name="item_description" class="input-sm form-control"></textarea>
+                    <textarea id="item-desc-textarea" name="item_description" class="input-sm form-control"></textarea>
                 </div>
             </td>
             <td class="td-amount">
@@ -115,6 +124,8 @@
                     <input type="hidden" name="quote_id" value="<?php echo $quote_id; ?>">
                     <input type="hidden" name="item_id" value="<?php echo $item->item_id; ?>">
                     <input type="hidden" name="item_product_id" value="<?php echo $item->item_product_id; ?>">
+                    <input type="hidden" name="item_family_id" value="<?php echo $item->item_family_id; ?>">
+					<input type="hidden" name="item_product_image" value="<?php echo htmlsc($item->item_product_image); ?>">
 
                     <div class="input-group">
                         <span class="input-group-addon"><?php _trans('item'); ?></span>
@@ -136,6 +147,13 @@
                                value="<?php echo format_amount($item->item_price); ?>">
                     </div>
                 </td>
+                 <td class="td-oncost">
+					<div class="input-group">
+						<span class="input-group-addon"><?php _trans('oncost'); ?></span>
+						<input type="text" name="item_oncost_price" class="input-sm form-control amount" 
+						value="<?php echo format_amount($item->item_oncost_price); ?>">
+					</div>
+            	</td>
                 <td class="td-amount ">
                     <div class="input-group">
                         <span class="input-group-addon"><?php _trans('item_discount'); ?></span>
@@ -170,7 +188,7 @@
                 <td class="td-textarea">
                     <div class="input-group">
                         <span class="input-group-addon"><?php _trans('description'); ?></span>
-                        <textarea name="item_description" class="input-sm form-control"
+                        <textarea id="item-desc-textarea2" name="item_description" class="input-sm form-control"
                         ><?php echo htmlsc($item->item_description); ?></textarea>
                     </div>
                 </td>
@@ -193,6 +211,12 @@
                     <span><?php _trans('subtotal'); ?></span><br/>
                     <span name="subtotal" class="amount">
                         <?php echo format_currency($item->item_subtotal); ?>
+                    </span>
+                </td>
+                <td class="td-amount td-vert-middle">
+                	<span><?php _trans('oncost'); ?></span><br/>
+                    <span name="item_oncost_price" class="amount">
+                        <?php echo format_currency($item->item_oncost_price); ?>
                     </span>
                 </td>
                 <td class="td-amount td-vert-middle">

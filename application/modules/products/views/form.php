@@ -81,6 +81,18 @@
                                 <span class="input-group-addon"><?php echo get_setting('currency_symbol'); ?></span>
                             </div>
                         </div>
+                        
+                        <div class="form-group">
+                            <label for="product_oncost_price">
+                                <?php _trans('oncost'); ?>
+                            </label>
+
+                            <div class="input-group has-feedback">
+                                <input type="text" name="product_oncost_price" id="product_oncost_price" class="form-control"
+                                       value="<?php echo format_amount($this->mdl_products->form_value('product_oncost_price')); ?>">
+                                <span class="input-group-addon"><?php echo get_setting('currency_symbol'); ?></span>
+                            </div>
+                        </div>
 
                         <div class="form-group">
                             <label for="unit_id">
@@ -112,6 +124,15 @@
                                     </option>
                                 <?php } ?>
                             </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="product_image">
+                                <?php _trans('product_image'); ?>
+                            </label>
+
+                            <textarea id="product_image" name="product_image" class="form-control" rows="3"
+                                   ><?php echo $this->mdl_products->form_value('product_image', true); ?></textarea>
                         </div>
 
                     </div>

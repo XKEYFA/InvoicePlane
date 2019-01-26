@@ -24,7 +24,7 @@ class Mdl_Quote_Items extends Response_Model
 
     public function default_select()
     {
-        $this->db->select('ip_quote_item_amounts.*, ip_quote_items.*, item_tax_rates.tax_rate_percent AS item_tax_rate_percent');
+        $this->db->select('ip_quote_item_amounts.*, ip_quote_items.*, item_tax_rates.tax_rate_percent AS item_tax_rate_percent, ip_families.family_name');
     }
 
     public function default_order_by()
@@ -36,6 +36,7 @@ class Mdl_Quote_Items extends Response_Model
     {
         $this->db->join('ip_quote_item_amounts', 'ip_quote_item_amounts.item_id = ip_quote_items.item_id', 'left');
         $this->db->join('ip_tax_rates AS item_tax_rates', 'item_tax_rates.tax_rate_id = ip_quote_items.item_tax_rate_id', 'left');
+        $this->db->join('ip_families', 'ip_families.family_id = ip_quote_items.item_family_id', 'left');
     }
 
     /**
@@ -73,6 +74,19 @@ class Mdl_Quote_Items extends Response_Model
             'item_product_id' => [
                 'field' => 'item_product_id',
                 'label' => trans('original_product'),
+            ],
+            'item_product_image' => [
+                'field' => 'item_product_image',
+                'label' => trans('product_image'),
+            ],
+            'item_family_id' => [
+                'field' => 'item_family_id',
+                'label' => trans('family'),
+                'rules' => 'numeric'
+            ],
+            'item_oncost_price' => [
+            	'field' => 'item_oncost_price',
+                'label' => trans('oncost'),
             ],
         ];
     }
@@ -131,6 +145,18 @@ class Mdl_Quote_Items extends Response_Model
         $this->mdl_quote_amounts->calculate($quote_id);
 
         return true;
+    }
+    
+    /**
+     * @return array
+     */
+    public function db_array()
+    {
+        $db_array = parent::db_array();
+
+        $db_array['family_id'] = (empty($db_array['family_id']) ? null : $db_array['family_id']);
+       
+        return $db_array;
     }
 
 }

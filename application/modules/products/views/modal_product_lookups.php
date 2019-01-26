@@ -36,7 +36,10 @@
                     last_item_row.find('select[name=item_tax_rate_id]').val(items[key].tax_rate_id);
                     last_item_row.find('input[name=item_product_id]').val(items[key].product_id);
                     last_item_row.find('select[name=item_product_unit_id]').val(items[key].unit_id);
-
+                    last_item_row.find('input[name=item_family_id]').val(items[key].family_id);
+                    last_item_row.find('input[name=item_product_image]').val(items[key].product_image);
+                    last_item_row.find('input[name=item_oncost_price]').val(items[key].product_oncost_price);
+                    
                     $('#modal-choose-items').modal('hide');
                 }
             });

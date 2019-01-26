@@ -63,6 +63,8 @@ class Ajax extends Admin_Controller
 
         foreach ($products as $product) {
             $product->product_price = format_amount($product->product_price);
+            $product->product_oncost_price = format_amount($product->product_oncost_price);
+            
         }
 
         echo json_encode($products);

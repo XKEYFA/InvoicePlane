@@ -106,6 +106,15 @@ class Mdl_Products extends Response_Model
                 'label' => trans('product_tariff'),
                 'rules' => ''
             ),
+             'product_image' => array(
+                'field' => 'product_image',
+                'label' => trans('product_image'),
+                'rules' => ''
+            ),
+            'product_oncost_price' => [
+            	'field' => 'product_oncost_price',
+                'label' => trans('oncost'),
+            ],
         );
     }
 
@@ -121,6 +130,8 @@ class Mdl_Products extends Response_Model
         $db_array['family_id'] = (empty($db_array['family_id']) ? null : $db_array['family_id']);
         $db_array['unit_id'] = (empty($db_array['unit_id']) ? null : $db_array['unit_id']);
         $db_array['tax_rate_id'] = (empty($db_array['tax_rate_id']) ? null : $db_array['tax_rate_id']);
+		$db_array['product_oncost_price'] = (empty($db_array['product_oncost_price']) ? null : standardize_amount($db_array['product_oncost_price']));
+        
 
         return $db_array;
     }
