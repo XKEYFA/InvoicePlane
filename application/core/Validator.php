@@ -25,6 +25,11 @@ class Validator extends MY_Model
     {
         return true;
     }
+    
+    public function validate_textarea()
+    {
+        return true;
+    }
 
     /**
      * @param $value
