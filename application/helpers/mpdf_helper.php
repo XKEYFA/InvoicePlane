@@ -93,6 +93,16 @@ function pdf_create(
         $mpdf->showWatermarkText = true;
     }
 
+    if (strpos($html,"htmlpageheader") > -1)
+    {
+        $mpdf->setAutoTopMargin = 'stretch';
+    }
+
+    if (strpos($html,"htmlpagefooter") > -1)
+    {
+        $mpdf->setAutoBottomMargin = 'stretch';
+    }
+    
     $mpdf->WriteHTML((string) $html);
 
     if ($isInvoice) {
