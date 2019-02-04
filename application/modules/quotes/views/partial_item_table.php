@@ -36,14 +36,24 @@
                     <span class="input-group-addon"><?php _trans('quantity'); ?></span>
                     <input type="text" name="item_quantity" class="input-sm form-control amount" value="">
                 </div>
+                <div class="input-group">
+                    <span class="input-group-addon"><?php _trans('product_unit'); ?></span>
+                    <select name="item_product_unit_id"
+                            class="form-control input-sm">
+                        <option value="0"><?php _trans('none'); ?></option>
+                        <?php foreach ($units as $unit) { ?>
+                            <option value="<?php echo $unit->unit_id; ?>">
+                                <?php echo htmlsc($unit->unit_name) . "/" . htmlsc($unit->unit_name_plrl); ?>
+                            </option>
+                        <?php } ?>
+                    </select>
+                </div>
             </td>
             <td class="td-amount">
                 <div class="input-group">
-                    <span class="input-group-addon"><?php _trans('price'); ?></span>
+                    <span class="input-group-addon"><?php _trans('Kosten ein.'); ?></span>
                     <input type="text" name="item_price" class="input-sm form-control amount" value="">
                 </div>
-            </td>
-            <td class="td-oncost">
                 <div class="input-group">
                     <span class="input-group-addon"><?php _trans('oncost'); ?></span>
                     <input type="text" name="item_oncost_price" class="input-sm form-control amount" value="">
@@ -51,9 +61,15 @@
             </td>
             <td class="td-amount ">
                 <div class="input-group">
-                    <span class="input-group-addon"><?php _trans('item_discount'); ?></span>
+                    <span class="input-group-addon"><?php _trans('Rabatt ein.'); ?></span>
                     <input type="text" name="item_discount_amount" class="input-sm form-control amount"
                            data-toggle="tooltip" data-placement="bottom"
+                           title="<?php echo get_setting('currency_symbol') . ' ' . trans('per_item'); ?>">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon"><?php _trans('Rabatt mtl.'); ?></span>
+                    <input type="text" name="item_oncost_discount_amount" class="input-sm form-control amount"
+                           value="" data-toggle="tooltip" data-placement="bottom"
                            title="<?php echo get_setting('currency_symbol') . ' ' . trans('per_item'); ?>">
                 </div>
             </td>
@@ -77,40 +93,32 @@
             </td>
         </tr>
         <tr>
-            <td class="td-textarea">
+            <td class="td-textarea" colspan="2">
                 <div class="input-group">
                     <span class="input-group-addon"><?php _trans('description'); ?></span>
                     <textarea id="item-desc-textarea" name="item_description" class="input-sm form-control"></textarea>
                 </div>
             </td>
-            <td class="td-amount">
-                <div class="input-group">
-                    <span class="input-group-addon"><?php _trans('product_unit'); ?></span>
-                    <select name="item_product_unit_id"
-                            class="form-control input-sm">
-                        <option value="0"><?php _trans('none'); ?></option>
-                        <?php foreach ($units as $unit) { ?>
-                            <option value="<?php echo $unit->unit_id; ?>">
-                                <?php echo htmlsc($unit->unit_name) . "/" . htmlsc($unit->unit_name_plrl); ?>
-                            </option>
-                        <?php } ?>
-                    </select>
-                </div>
-            </td>
             <td class="td-amount td-vert-middle">
-                <span><?php _trans('subtotal'); ?></span><br/>
+                <span><?php _trans('Kosten ein.'); ?></span>
+                <span name="subtotal" class="amount"></span><br />
+                <span><?php _trans('oncost'); ?></span>
                 <span name="subtotal" class="amount"></span>
             </td>
-            <td class="td-amount td-vert-middle">
-                <span><?php _trans('discount'); ?></span><br/>
+            <td class="td-discount td-vert-middle">
+                <span><?php _trans('Rabatt ein.'); ?></span>
+                <span name="item_discount_total" class="amount"></span><br />
+                <span><?php _trans('Rabatt mtl.'); ?></span>
                 <span name="item_discount_total" class="amount"></span>
             </td>
-            <td class="td-amount td-vert-middle">
+            <td class="td-amount td-tax td-vert-middle">
                 <span><?php _trans('tax'); ?></span><br/>
                 <span name="item_tax_total" class="amount"></span>
             </td>
             <td class="td-amount td-vert-middle">
-                <span><?php _trans('total'); ?></span><br/>
+                <span><?php _trans('Summe ein.'); ?></span>
+                <span name="item_total" class="amount"></span><br/>
+                <span><?php _trans('Summe mtl.'); ?></span>
                 <span name="item_total" class="amount"></span>
             </td>
         </tr>
@@ -139,31 +147,52 @@
                         <input type="text" name="item_quantity" class="input-sm form-control amount"
                                value="<?php echo format_amount($item->item_quantity); ?>">
                     </div>
+                    <div class="input-group">
+                        <span class="input-group-addon"><?php _trans('product_unit'); ?></span>
+                        <select name="item_product_unit_id"
+                                class="form-control input-sm">
+                            <option value="0"><?php _trans('none'); ?></option>
+                            <?php foreach ($units as $unit) { ?>
+                                <option value="<?php echo $unit->unit_id; ?>"
+                                    <?php check_select($item->item_product_unit_id, $unit->unit_id); ?>>
+                                    <?php echo htmlsc($unit->unit_name) . "/" . htmlsc($unit->unit_name_plrl); ?>
+                                </option>
+                            <?php } ?>
+                        </select>
+                    </div>
                 </td>
                 <td class="td-amount">
                     <div class="input-group">
-                        <span class="input-group-addon"><?php _trans('price'); ?></span>
+                        <span class="input-group-addon"><?php _trans('Kosten ein.'); ?></span>
                         <input type="text" name="item_price" class="input-sm form-control amount"
                                value="<?php echo format_amount($item->item_price); ?>">
                     </div>
-                </td>
-                 <td class="td-oncost">
-					<div class="input-group">
+                    <div class="input-group">
 						<span class="input-group-addon"><?php _trans('oncost'); ?></span>
 						<input type="text" name="item_oncost_price" class="input-sm form-control amount" 
 						value="<?php echo format_amount($item->item_oncost_price); ?>">
 					</div>
-            	</td>
-                <td class="td-amount ">
+                </td>   
+                <td class="td-discount ">
                     <div class="input-group">
-                        <span class="input-group-addon"><?php _trans('item_discount'); ?></span>
+                        <span class="input-group-addon"><?php _trans('ein. Rabatt'); ?></span>
                         <input type="text" name="item_discount_amount" class="input-sm form-control amount"
                                value="<?php echo format_amount($item->item_discount_amount); ?>"
                                data-toggle="tooltip" data-placement="bottom"
                                title="<?php echo get_setting('currency_symbol') . ' ' . trans('per_item'); ?>">
                     </div>
+                    <div class="input-group">
+                        <span class="input-group-addon"><?php _trans('mtl. Rabatt'); ?></span>
+                        <input type="text" name="item_oncost_discount_amount" class="input-sm form-control amount"
+                               value="<?php echo format_amount($item->item_oncost_discount_amount); ?>"
+                               data-toggle="tooltip" data-placement="bottom"
+                               title="<?php echo get_setting('currency_symbol') . ' ' . trans('per_item'); ?>">
+                    </div>
                 </td>
                 <td>
+
+                            </td>
+                <td class="td-tax td-amount">
                     <div class="input-group">
                         <span class="input-group-addon"><?php _trans('tax_rate'); ?></span>
                         <select name="item_tax_rate_id" class="form-control input-sm">
@@ -185,56 +214,61 @@
                 </td>
             </tr>
             <tr>
-                <td class="td-textarea">
+                <td class="td-textarea" colspan="2">
                     <div class="input-group">
                         <span class="input-group-addon"><?php _trans('description'); ?></span>
                         <textarea id="item-desc-textarea2" name="item_description" class="input-sm form-control"
                         ><?php echo htmlsc($item->item_description); ?></textarea>
                     </div>
                 </td>
-                <td class="td-amount">
-                    <div class="input-group">
-                        <span class="input-group-addon"><?php _trans('product_unit'); ?></span>
-                        <select name="item_product_unit_id"
-                                class="form-control input-sm">
-                            <option value="0"><?php _trans('none'); ?></option>
-                            <?php foreach ($units as $unit) { ?>
-                                <option value="<?php echo $unit->unit_id; ?>"
-                                    <?php check_select($item->item_product_unit_id, $unit->unit_id); ?>>
-                                    <?php echo htmlsc($unit->unit_name) . "/" . htmlsc($unit->unit_name_plrl); ?>
-                                </option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                </td>
                 <td class="td-amount td-vert-middle">
-                    <span><?php _trans('subtotal'); ?></span><br/>
+                    <span><?php _trans('Kosten ein.'); ?></span>
                     <span name="subtotal" class="amount">
                         <?php echo format_currency($item->item_subtotal); ?>
-                    </span>
-                </td>
-                <td class="td-amount td-vert-middle">
-                	<span><?php _trans('oncost'); ?></span><br/>
+                    </span><br />
+                    <span><?php _trans('oncost'); ?></span>
                     <span name="item_oncost_price" class="amount">
-                        <?php echo format_currency($item->item_oncost_price); ?>
+                        <?php echo format_currency($item->item_oncost_subtotal); ?>
                     </span>
                 </td>
                 <td class="td-amount td-vert-middle">
-                    <span><?php _trans('discount'); ?></span><br/>
+                    <span><?php _trans('Rabatt ein.'); ?></span>
                     <span name="item_discount_total" class="amount">
                         <?php echo format_currency($item->item_discount); ?>
+                    </span><br />
+                    <span><?php _trans('Rabatt mtl.'); ?></span>
+                    <span name="item_discount_oncost_total" class="amount">
+                        <?php echo format_currency($item->item_oncost_discount); ?>
                     </span>
                 </td>
                 <td class="td-amount td-vert-middle">
-                    <span><?php _trans('tax'); ?></span><br/>
+                <span><?php _trans('Summe netto ein.'); ?></span>
+                    <span name="subtotal" class="amount">
+                        <?php echo format_currency($item->item_subtotal-$item->item_discount); ?>
+                    </span><br />
+                    <span><?php _trans('Summe netto mtl.'); ?></span>
+                    <span name="item_oncost_price" class="amount">
+                        <?php echo format_currency($item->item_oncost_subtotal-$item->item_oncost_discount); ?>
+                    </span>
+                </td>
+                <td class="td-tax td-amount td-vert-middle">
+                    <span><?php _trans('tax'); ?></span>
                     <span name="item_tax_total" class="amount">
                         <?php echo format_currency($item->item_tax_total); ?>
+                    </span><br />
+                    <span><?php _trans('oncost tax'); ?></span>
+                    <span name="item_tax_total" class="amount">
+                        <?php echo format_currency($item->item_oncost_tax_total); ?>
                     </span>
                 </td>
                 <td class="td-amount td-vert-middle">
-                    <span><?php _trans('total'); ?></span><br/>
+                    <span><?php _trans('Summe ein.'); ?></span>
                     <span name="item_total" class="amount">
                         <?php echo format_currency($item->item_total); ?>
+                    </span><br />
+                    <span><?php _trans('Summe mtl.'); ?></span>
+                    <span name="item_total" class="amount">
+                        <?php echo format_currency($item->item_oncost_total); ?>
                     </span>
                 </td>
             </tr>
@@ -265,12 +299,19 @@
     <div class="col-xs-12 col-md-6 col-md-offset-2 col-lg-4 col-lg-offset-4">
         <table class="table table-bordered text-right">
             <tr>
+                <td style="width: 40%;">&nbsp;</td>
+                <td style="width: 30%;" class="amount"><?php _trans("einmalig"); ?></td>
+                <td style="width: 30%;" class="amount"><?php _trans("monatlich"); ?></td>
+            </tr>
+            <tr>
                 <td style="width: 40%;"><?php _trans('subtotal'); ?></td>
-                <td style="width: 60%;" class="amount"><?php echo format_currency($quote->quote_item_subtotal); ?></td>
+                <td style="width: 30%;" class="amount"><?php echo format_currency($quote->quote_item_subtotal); ?></td>
+                <td style="width: 30%;" class="amount"><?php echo format_currency($quote->quote_item_oncost_subtotal); ?></td>
             </tr>
             <tr>
                 <td><?php _trans('item_tax'); ?></td>
                 <td class="amount"><?php echo format_currency($quote->quote_item_tax_total); ?></td>
+                <td class="amount"><?php echo format_currency($quote->quote_item_oncost_tax_total); ?></td>
             </tr>
             <tr>
                 <td><?php _trans('quote_tax'); ?></td>
@@ -296,8 +337,9 @@
                         echo format_currency('0');
                     } ?>
                 </td>
+                <td></td>
             </tr>
-            <tr>
+            <tr style="display:none;">
                 <td class="td-vert-middle"><?php _trans('discount'); ?></td>
                 <td class="clearfix">
                     <div class="discount-field">
@@ -319,10 +361,12 @@
                         </div>
                     </div>
                 </td>
+                <td></td>
             </tr>
             <tr>
                 <td><b><?php _trans('total'); ?></b></td>
                 <td class="amount"><b><?php echo format_currency($quote->quote_total); ?></b></td>
+                <td class="amount"><b><?php echo format_currency($quote->quote_oncost_total); ?></b></td>
             </tr>
         </table>
     </div>

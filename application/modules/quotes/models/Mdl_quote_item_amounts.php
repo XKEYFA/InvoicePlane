@@ -21,6 +21,10 @@ class Mdl_Quote_Item_Amounts extends CI_Model
      * item_subtotal (item_quantity * item_price)
      * item_tax_total
      * item_total ((item_quantity * item_price) + item_tax_total)
+     * item_oncost_subtotal (item_quantity * item_oncost_price)
+     * item_oncost_tax_total
+     * item_oncost_discount
+     * item_oncost_total
      *
      * @param $item_id
      */
@@ -35,12 +39,21 @@ class Mdl_Quote_Item_Amounts extends CI_Model
         $item_discount_total = $item->item_discount_amount * $item->item_quantity;
         $item_total = $item_subtotal + $item_tax_total - $item_discount_total;
 
+        $item_oncost_subtotal = $item->item_oncost_price * $item->item_quantity;
+        $item_oncost_tax_total = $item_oncost_subtotal * ($item->item_tax_rate_percent / 100);
+        $item_oncost_discount = $item->item_oncost_discount_amount * $item->item_quantity;
+        $item_oncost_total = $item_oncost_subtotal + $item_oncost_tax_total - $item_oncost_discount;
+
         $db_array = array(
             'item_id' => $item_id,
             'item_subtotal' => $item_subtotal,
             'item_tax_total' => $item_tax_total,
             'item_discount' => $item_discount_total,
             'item_total' => $item_total,
+            'item_oncost_subtotal' => $item_oncost_subtotal,
+            'item_oncost_tax_total' => $item_oncost_tax_total,
+            'item_oncost_discount' => $item_oncost_discount,
+            'item_oncost_total' => $item_oncost_total
         );
 
         $this->db->where('item_id', $item_id);

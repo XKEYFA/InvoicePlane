@@ -37,6 +37,7 @@ class Ajax extends Admin_Controller
                     $item->item_price = ($item->item_quantity ? standardize_amount($item->item_price) : floatval(0));
                     $item->item_oncost_price = standardize_amount($item->item_oncost_price);
                     $item->item_discount_amount = ($item->item_discount_amount) ? standardize_amount($item->item_discount_amount) : null;
+                    $item->item_oncost_discount_amount = ($item->item_oncost_discount_amount) ? standardize_amount($item->item_oncost_discount_amount) : null;
                     $item->item_product_id = ($item->item_product_id ? $item->item_product_id : null);
                     $item->item_product_unit_id = ($item->item_product_unit_id ? $item->item_product_unit_id : null);
                     $item->item_product_unit = $this->mdl_units->get_name($item->item_product_unit_id, $item->item_quantity);
@@ -60,6 +61,18 @@ class Ajax extends Admin_Controller
                 $quote_discount_percent = $this->input->post('quote_discount_percent');
             }
 
+            if ($this->input->post('quote_oncost_discount_amount') === '') {
+                $quote_oncost_discount_amount = floatval(0);
+            } else {
+                $quote_oncost_discount_amount = $this->input->post('quote_oncost_discount_amount');
+            }
+
+            if ($this->input->post('quote_oncost_discount_percent') === '') {
+                $quote_oncost_discount_percent = floatval(0);
+            } else {
+                $quote_oncost_discount_percent = $this->input->post('quote_oncost_discount_percent');
+            }
+
             // Generate new quote number if needed
             $quote_number = $this->input->post('quote_number');
             $quote_status_id = $this->input->post('quote_status_id');
@@ -78,6 +91,8 @@ class Ajax extends Admin_Controller
                 'notes' => $this->input->post('notes'),
                 'quote_discount_amount' => standardize_amount($quote_discount_amount),
                 'quote_discount_percent' => standardize_amount($quote_discount_percent),
+                'quote_oncost_discount_amount' => standardize_amount($quote_oncost_discount_amount),
+                'quote_oncost_discount_percent'=> standardize_amount($quote_oncost_discount_percent),
             ];
 
             $this->mdl_quotes->save($quote_id, $db_array);
@@ -354,6 +369,7 @@ class Ajax extends Admin_Controller
                     'item_product_unit_id' => $quote_item->item_product_unit_id,
                     'item_product_unit' => $quote_item->item_product_unit,
                     'item_discount_amount' => $quote_item->item_discount_amount,
+                    'item_oncost_discount_amount' => $quote_item->item_oncost_discount_amount,
                     'item_order' => $quote_item->item_order,
                 ];
 
