@@ -48,7 +48,7 @@ function format_amount($amount = null)
 
         return number_format($amount, ($decimal_point) ? 2 : 0, $decimal_point, $thousands_separator);
     }
-    return null;
+    return "0,00";
 }
 
 /**
