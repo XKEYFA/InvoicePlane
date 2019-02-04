@@ -82,7 +82,11 @@ class Mdl_Quotes extends Response_Model
 			IFnull(ip_quote_amounts.quote_item_subtotal, '0.00') AS quote_item_subtotal,
 			IFnull(ip_quote_amounts.quote_item_tax_total, '0.00') AS quote_item_tax_total,
 			IFnull(ip_quote_amounts.quote_tax_total, '0.00') AS quote_tax_total,
-			IFnull(ip_quote_amounts.quote_total, '0.00') AS quote_total,
+            IFnull(ip_quote_amounts.quote_total, '0.00') AS quote_total,
+            IFnull(ip_quote_amounts.quote_item_oncost_subtotal, '0.00') AS quote_item_oncost_subtotal,
+			IFnull(ip_quote_amounts.quote_item_oncost_tax_total, '0.00') AS quote_item_oncost_tax_total,
+			IFnull(ip_quote_amounts.quote_oncost_tax_total, '0.00') AS quote_oncost_tax_total,
+            IFnull(ip_quote_amounts.quote_oncost_total, '0.00') AS quote_oncost_total,
             ip_invoices.invoice_number,
 			ip_quotes.*", false);
     }
@@ -213,7 +217,7 @@ class Mdl_Quotes extends Response_Model
                 'item_order' => $quote_item->item_order,
                 'item_product_image' => $quote_item->item_product_image,
                 'item_family_id' => $quote_item->item_family_id,
-                'item_oncost_price' => $quote_item->item_oncost_price
+                'item_oncost_price' => $quote_item->item_oncost_price,
             );
 
             $this->mdl_quote_items->save(null, $db_array);

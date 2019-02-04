@@ -50,3 +50,8 @@
 .ellipsis-5{
   max-height:110px;
 }
+
+.table.items td.td-discount
+{
+  max-width:100px;
+}
