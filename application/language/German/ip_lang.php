@@ -700,5 +700,6 @@ $lang = array(
     'product_image'									=> 'Bild',
     'oncost'										=> 'Kosten mtl.',
     'oncost tax'                                    => 'Steuer mtl.',
-    'product_oncost_price'                          => 'Monatliche Kosten'
+    'product_oncost_price'                          => 'Monatliche Kosten',
+    'amount oncost'                                 => 'Monatliche Kosten',
 );

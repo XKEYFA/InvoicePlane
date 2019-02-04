@@ -9,6 +9,7 @@
             <th><?php _trans('due_date'); ?></th>
             <th><?php _trans('client_name'); ?></th>
             <th style="text-align: right; padding-right: 25px;"><?php _trans('amount'); ?></th>
+            <th style="text-align: right; padding-right: 25px;"><?php _trans('amount oncost'); ?></th>
             <th><?php _trans('options'); ?></th>
         </tr>
         </thead>
@@ -47,8 +48,12 @@
                         <?php _htmlsc(format_client($quote)); ?>
                     </a>
                 </td>
+                
                 <td style="text-align: right; padding-right: 25px;">
                     <?php echo format_currency($quote->quote_total); ?>
+                </td>
+                <td style="text-align: right; padding-right: 25px;">
+                    <?php echo format_currency($quote->quote_oncost_total); ?>
                 </td>
                 <td>
                     <div class="options btn-group<?php echo $dropup ? ' dropup' : ''; ?>">
