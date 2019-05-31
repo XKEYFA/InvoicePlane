@@ -29,7 +29,7 @@
 	forced_root_block: false,
 	height:300,
 	toolbar: 'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent code image',
-	plugins: 'image lists',
+	plugins: 'image lists table',
 	images_upload_url: '<?php echo base_url() . "vendor/tinymce/upload.php"; ?>',
   	images_upload_base_path: '<?php echo '../../../uploads/images'; ?>',
   	images_upload_credentials: true
@@ -41,7 +41,7 @@
 	forced_root_block: false,
 	height:100,
 	toolbar: 'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent code image',
-	plugins: 'image',
+	plugins: 'image table',
 	images_upload_url: '<?php echo base_url() . "vendor/tinymce/upload.php"; ?>',
   	images_upload_base_path: '<?php echo '../../../uploads/images'; ?>',
   	images_upload_credentials: true

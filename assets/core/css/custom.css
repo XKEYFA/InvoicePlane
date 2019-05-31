@@ -55,3 +55,9 @@
 {
   max-width:100px;
 }
+
+td.oncost_amount, th.oncost_amount
+{
+  max-width: 200px;
+  text-align:right;
+}

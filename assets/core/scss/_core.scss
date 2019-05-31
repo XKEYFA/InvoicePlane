@@ -127,6 +127,16 @@ textarea {
       }
     }
 
+    &.td-oncost_amount 
+    {
+      max-width: 200px;
+      text-align: right;
+
+      .form-control {
+        text-align: right;
+      }
+    }
+
     &.td-discount {
       max-width: 100px;
       text-align: right;
@@ -146,7 +156,7 @@ textarea {
     }
 
     &.td-tax {
-      max-width: 100px;
+      max-width: 100px; 
       text-align: right;
 
       .form-control {

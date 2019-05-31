@@ -302,7 +302,8 @@ class Mdl_Quote_Amounts extends CI_Model
             case 'this-month':
                 $results = $this->db->query("
 					SELECT quote_status_id,
-					    SUM(quote_total) AS sum_total,
+                        SUM(quote_total) AS sum_total,
+                        SUM(quote_oncost_total) as oncost_total,
 					    COUNT(*) AS num_total
 					FROM ip_quote_amounts
 					JOIN ip_quotes ON ip_quotes.quote_id = ip_quote_amounts.quote_id
@@ -313,7 +314,8 @@ class Mdl_Quote_Amounts extends CI_Model
             case 'last-month':
                 $results = $this->db->query("
 					SELECT quote_status_id,
-					    SUM(quote_total) AS sum_total,
+                        SUM(quote_total) AS sum_total,
+                        SUM(quote_oncost_total) as oncost_total,
 					    COUNT(*) AS num_total
 					FROM ip_quote_amounts
 					JOIN ip_quotes ON ip_quotes.quote_id = ip_quote_amounts.quote_id
@@ -324,7 +326,8 @@ class Mdl_Quote_Amounts extends CI_Model
             case 'this-quarter':
                 $results = $this->db->query("
 					SELECT quote_status_id,
-					    SUM(quote_total) AS sum_total,
+                        SUM(quote_total) AS sum_total,
+                        SUM(quote_oncost_total) as oncost_total,
 					    COUNT(*) AS num_total
 					FROM ip_quote_amounts
 					JOIN ip_quotes ON ip_quotes.quote_id = ip_quote_amounts.quote_id
@@ -335,7 +338,8 @@ class Mdl_Quote_Amounts extends CI_Model
             case 'last-quarter':
                 $results = $this->db->query("
 					SELECT quote_status_id,
-					    SUM(quote_total) AS sum_total,
+                        SUM(quote_total) AS sum_total,
+                        SUM(quote_oncost_total) as oncost_total,
 					    COUNT(*) AS num_total
 					FROM ip_quote_amounts
 					JOIN ip_quotes ON ip_quotes.quote_id = ip_quote_amounts.quote_id
@@ -346,7 +350,8 @@ class Mdl_Quote_Amounts extends CI_Model
             case 'this-year':
                 $results = $this->db->query("
 					SELECT quote_status_id,
-					    SUM(quote_total) AS sum_total,
+                        SUM(quote_total) AS sum_total,
+                        SUM(quote_oncost_total) as oncost_total,
 					    COUNT(*) AS num_total
 					FROM ip_quote_amounts
 					JOIN ip_quotes ON ip_quotes.quote_id = ip_quote_amounts.quote_id
@@ -356,7 +361,8 @@ class Mdl_Quote_Amounts extends CI_Model
             case 'last-year':
                 $results = $this->db->query("
 					SELECT quote_status_id,
-					    SUM(quote_total) AS sum_total,
+                        SUM(quote_total) AS sum_total,
+                        SUM(quote_oncost_total) as oncost_total,
 					    COUNT(*) AS num_total
 					FROM ip_quote_amounts
 					JOIN ip_quotes ON ip_quotes.quote_id = ip_quote_amounts.quote_id
@@ -374,7 +380,8 @@ class Mdl_Quote_Amounts extends CI_Model
                 'label' => $status['label'],
                 'href' => $status['href'],
                 'sum_total' => 0,
-                'num_total' => 0
+                'num_total' => 0,
+                'oncost_total' => 0,
             );
         }
 

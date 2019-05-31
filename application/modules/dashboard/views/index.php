@@ -44,6 +44,14 @@
                 </div>
 
                 <table class="table table-bordered table-condensed no-margin">
+                <thead>
+                    <tr>
+                     <th>&nbsp;</th>
+                     <th class="amount">einmalige Kosten</th>
+                    <th class="oncost_amount">monatliche Kosten</th>
+                   </tr>
+                </thead>
+                <tbody>
                     <?php foreach ($quote_status_totals as $total) { ?>
                         <tr>
                             <td>
@@ -52,12 +60,18 @@
                                 </a>
                             </td>
                             <td class="amount">
-                        <span class="<?php echo $total['class']; ?>">
-                            <?php echo format_currency($total['sum_total']); ?>
-                        </span>
+                                <span class="<?php echo $total['class']; ?>">
+                                    <?php echo format_currency($total['sum_total']); ?>
+                                </span>
+                            </td>
+                            <td class="oncost_amount">
+                                <span class="<?php echo $total['class']; ?>">
+                                    <?php echo format_currency($total['oncost_total']); ?>
+                                </span>
                             </td>
                         </tr>
                     <?php } ?>
+                    </tbody>
                 </table>
             </div>
 
