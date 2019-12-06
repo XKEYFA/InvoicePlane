@@ -27,7 +27,10 @@ class Mdl_Users extends Response_Model
     {
         return array(
             '1' => trans('administrator'),
-            '2' => trans('guest_read_only')
+            '2' => trans('guest_read_only'),
+            '3' => trans('ps_admin'),
+            '4' => trans('ps_internal'),
+            '5' => trans('ps_external')
         );
     }
 

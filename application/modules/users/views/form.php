@@ -4,14 +4,39 @@ $cv = $this->controller->view_data["custom_values"];
 <script>
     $(function () {
         show_fields();
+        show_field_rights();
 
         $('#user_type').change(function () {
             show_fields();
         });
 
+        function show_field_rights() {
+            $('#user_type').attr('disabled', true);
+            var user_type = $this->session->userdata('user_type');
+            
+            if (user_type === '1') {
+                $('#user_type').attr('disabled', false);
+            } else if (user_type === '2') {
+            } else if (user_type === '3') {
+
+            } else if (user_type === '4') {
+
+            } else if (user_type === '5') {
+
+            }
+        }
+
         function show_fields() {
+            /*
+            '1' => trans('administrator'),
+            '2' => trans('guest_read_only'),
+            '3' => trans('ps_admin'),
+            '4' => trans('ps_internal'),
+            '5' => trans('ps_external')
+            */
             $('#administrator_fields').hide();
             $('#guest_fields').hide();
+            
 
             var user_type = $('#user_type').val();
 
@@ -19,6 +44,12 @@ $cv = $this->controller->view_data["custom_values"];
                 $('#administrator_fields').show();
             } else if (user_type === '2') {
                 $('#guest_fields').show();
+            } else if (user_type === '3') {
+
+            } else if (user_type === '4') {
+
+            } else if (user_type === '5') {
+
             }
         }
 
@@ -354,7 +385,7 @@ $cv = $this->controller->view_data["custom_values"];
                         <?php if ($custom_fields) : ?>
                             <div class="panel panel-default">
                                 <div class="panel-heading"><?php _trans('custom_fields'); ?></div>
-
+                            
                                 <div class="panel-body">
                                     <?php
                                     $cv = $this->controller->view_data["custom_values"];
@@ -362,6 +393,7 @@ $cv = $this->controller->view_data["custom_values"];
                                         if ($custom_field->custom_field_location != 0) {
                                             continue;
                                         }
+                                        
                                         print_field(
                                             $this->mdl_users,
                                             $custom_field,

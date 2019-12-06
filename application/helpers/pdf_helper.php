@@ -251,8 +251,9 @@ function generate_quote_pdf($quote_id, $stream = true, $quote_template = null)
         'show_item_discounts' => $show_item_discounts,
         'custom_fields' => $custom_fields,
     );
-
+	
     $html = $CI->load->view('quote_templates/pdf/' . $quote_template, $data, true);
+
     //print_r($html);exit; 
     $CI->load->helper('mpdf');
     

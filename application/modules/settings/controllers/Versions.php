@@ -13,7 +13,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Class Versions
  */
-class Versions extends Admin_Controller
+class Versions extends Ps_Extern_Controller
 {
     /**
      * Versions constructor.

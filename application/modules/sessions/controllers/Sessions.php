@@ -45,7 +45,11 @@ class Sessions extends Base_Controller
                 } else {
 
                     if ($this->authenticate($this->input->post('email'), $this->input->post('password'))) {
-                        if ($this->session->userdata('user_type') == 1) {
+                        if ($this->session->userdata('user_type') == 1 
+                            || $this->session->userdata('user_type') == 3
+                            || $this->session->userdata('user_type') == 4
+                            || $this->session->userdata('user_type') == 5
+                            ) {
                             redirect('dashboard');
                         } elseif ($this->session->userdata('user_type') == 2) {
                             redirect('guest');

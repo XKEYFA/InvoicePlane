@@ -13,7 +13,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Class Recurring
  */
-class Recurring extends Admin_Controller
+class Recurring extends Ps_Extern_Controller
 {
     /**
      * Recurring constructor.

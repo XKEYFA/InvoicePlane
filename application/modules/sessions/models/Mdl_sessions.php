@@ -66,8 +66,10 @@ class Mdl_Sessions extends CI_Model
                     return false;
                 }
             }
-
+            
             if ($this->crypt->check_password($user->user_password, $password)) {
+
+                //$user_custom = $this->mdl_user_custom->where('user_id', $user->user_id)->get();
                 $session_data = array(
                     'user_type' => $user->user_type,
                     'user_id' => $user->user_id,
@@ -75,6 +77,7 @@ class Mdl_Sessions extends CI_Model
                     'user_email' => $user->user_email,
                     'user_company' => $user->user_company,
                     'user_language' => isset($user->user_language) ? $user->user_language : 'system',
+                    //'custom_fields' => $custom_user_data,
                 );
 
                 $this->session->set_userdata($session_data);

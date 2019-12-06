@@ -13,7 +13,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Class Payment_Methods
  */
-class Payment_Methods extends Admin_Controller
+class Payment_Methods extends Ps_Extern_Controller
 {
     /**
      * Payment_Methods constructor.

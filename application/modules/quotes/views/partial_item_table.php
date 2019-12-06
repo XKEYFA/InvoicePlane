@@ -96,7 +96,7 @@
             <td class="td-textarea" colspan="2">
                 <div class="input-group">
                     <span class="input-group-addon"><?php _trans('description'); ?></span>
-                    <textarea id="item-desc-textarea" name="item_description" class="input-sm form-control"></textarea>
+                    <textarea id="item-desc-textarea" name="item_description" class="input-sm form-control textarea-desc-wysiwyg"></textarea>
                 </div>
             </td>
             <td class="td-amount td-vert-middle">
@@ -217,8 +217,9 @@
                 <td class="td-textarea" colspan="2">
                     <div class="input-group">
                         <span class="input-group-addon"><?php _trans('description'); ?></span>
-                        <textarea id="item-desc-textarea2" name="item_description" class="input-sm form-control"
-                        ><?php echo htmlsc($item->item_description); ?></textarea>
+                        <textarea id="item-desc-textarea<?php echo $item->item_id; ?>" name="item_description" class="input-sm form-control textarea-desc-wysiwyg">
+                            <?php echo htmlsc($item->item_description); ?>
+                        </textarea>
                     </div>
                 </td>
                 <td class="td-amount td-vert-middle">

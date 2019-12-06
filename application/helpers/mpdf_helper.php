@@ -102,7 +102,7 @@ function pdf_create(
     {
         $mpdf->setAutoBottomMargin = 'stretch';
     }
-    
+    //$mpdf->showImageErrors = true;
     $mpdf->WriteHTML((string) $html);
 
     if ($isInvoice) {

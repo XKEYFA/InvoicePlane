@@ -238,7 +238,8 @@ class Mdl_Quotes extends Response_Model
 
         // Copy the custom fields
         $this->load->model('custom_fields/mdl_quote_custom');
-        $db_array = $this->mdl_quote_custom->where('quote_id', $source_id)->get()->row_array();
+        //$db_array = $this->mdl_quote_custom->where('quote_id', $source_id)->get()->row_array();
+		$db_array = $this->mdl_quote_custom->by_id($source_id)->get()->result_array();
 
         if (count($db_array) > 2) {
             unset($db_array['quote_custom_id']);

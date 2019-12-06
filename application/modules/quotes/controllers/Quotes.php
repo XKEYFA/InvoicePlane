@@ -13,7 +13,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Class Quotes
  */
-class Quotes extends Admin_Controller
+class Quotes extends Ps_Extern_Controller
 {
     /**
      * Quotes constructor.

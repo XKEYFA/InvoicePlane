@@ -13,7 +13,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Class Upload
  */
-class Upload extends Admin_Controller
+class Upload extends Ps_Extern_Controller
 {
     public $targetPath;
 

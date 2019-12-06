@@ -13,22 +13,20 @@ if (!defined('BASEPATH')) {
  */
 
 /**
- * Class User_Controller
+ * Class Admin_Controller
  */
-class User_Controller extends Base_Controller
+class Ps_Admin_Controller extends Ps_Intern_Controller
 {
 
     /**
-     * User_Controller constructor.
-     *
-     * @param string  $required_key
-     * @param integer $required_val
+     * Admin_Controller constructor.
      */
-    public function __construct($required_key, $required_val)
+    public function __construct()
     {
         parent::__construct();
-
-        if ($this->session->userdata($required_key) != $required_val && $required_val != -1) {
+        if ($this->session->userdata('user_type') != 3
+        && $this->session->userdata('user_type') != 1
+            ) {
             redirect('dashboard/access_denied');
         }
     }

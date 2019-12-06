@@ -13,7 +13,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Class Email_Templates
  */
-class Email_Templates extends Admin_Controller
+class Email_Templates extends Ps_Extern_Controller
 {
     /**
      * Email_Templates constructor.

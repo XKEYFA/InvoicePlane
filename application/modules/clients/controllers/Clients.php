@@ -13,7 +13,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Class Clients
  */
-class Clients extends Admin_Controller
+class Clients extends Ps_Extern_Controller
 {
     /**
      * Clients constructor.

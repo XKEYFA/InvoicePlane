@@ -13,7 +13,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Class Dashboard
  */
-class Dashboard extends Admin_Controller
+class Dashboard extends Ps_Extern_Controller
 {
     public function index()
     {
@@ -45,6 +45,12 @@ class Dashboard extends Admin_Controller
         );
 
         $this->layout->buffer('content', 'dashboard/index');
+        $this->layout->render();
+    }
+
+    public function access_denied()
+    {
+        $this->layout->buffer('content', 'dashboard/access_denied');
         $this->layout->render();
     }
 

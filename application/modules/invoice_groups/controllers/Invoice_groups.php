@@ -13,7 +13,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Class Invoice_Groups
  */
-class Invoice_Groups extends Admin_Controller
+class Invoice_Groups extends Ps_Extern_Controller
 {
     /**
      * Invoice_Groups constructor.

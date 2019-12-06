@@ -13,7 +13,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Class Tax_Rates
  */
-class Tax_Rates extends Admin_Controller
+class Tax_Rates extends Ps_Extern_Controller
 {
     /**
      * Tax_Rates constructor.

@@ -55,22 +55,46 @@ class Mdl_Quote_Custom extends Validator
             }
 
             $quote_custom_id = null;
+			
+			if (!array_key_exists('quote_id', $form_data))
+			{
+				foreach ($form_data as $key => $value) {
+					$db_array = array(
+						'quote_id' => $quote_id,
+						'quote_custom_fieldid' => $key,
+						'quote_custom_fieldvalue' => $value
+					);
 
-            foreach ($form_data as $key => $value) {
-                $db_array = array(
-                    'quote_id' => $quote_id,
-                    'quote_custom_fieldid' => $key,
-                    'quote_custom_fieldvalue' => $value
-                );
+					$quote_custom = $this->where('quote_id', $quote_id)->where('quote_custom_fieldid', $key)->get();
 
-                $quote_custom = $this->where('quote_id', $quote_id)->where('quote_custom_fieldid', $key)->get();
+					if ($quote_custom->num_rows()) {
+						$quote_custom_id = $quote_custom->row()->quote_custom_id;
+						
+					}
+					
+					parent::save($quote_custom_id, $db_array);
+				}
+			} else {
+				foreach ($form_data as $val) {
+					
+					if ($val['quote_custom_fieldid'] && $val['quote_custom_fieldvalue'])
+					{
+						$db_array = array(
+							'quote_id' => $quote_id,
+							'quote_custom_fieldid' => $val['quote_custom_fieldid'],
+							'quote_custom_fieldvalue' => $val['quote_custom_fieldvalue']
+						);
+						$quote_custom = $this->where('quote_id', $quote_id)->where('quote_custom_fieldid', $val["quote_custom_fieldid"])->get();
 
-                if ($quote_custom->num_rows()) {
-                    $quote_custom_id = $quote_custom->row()->quote_custom_id;
-                }
-
-                parent::save($quote_custom_id, $db_array);
-            }
+						if ($quote_custom->num_rows()) {
+							$quote_custom_id = $quote_custom->row()->quote_custom_id;
+							
+						}
+						
+						parent::save($quote_custom_id, $db_array);
+					}
+				}
+			}				
 
             return true;
         }

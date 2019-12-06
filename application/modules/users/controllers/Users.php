@@ -13,7 +13,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Class Users
  */
-class Users extends Admin_Controller
+class Users extends Ps_Extern_Controller
 {
     /**
      * Users constructor.
@@ -57,7 +57,7 @@ class Users extends Admin_Controller
             // Update the session details if the logged in user edited his account
             if ($this->session->userdata('user_id') == $id) {
                 $new_details = $this->mdl_users->get_by_id($id);
-
+               
                 $session_data = array(
                     'user_type' => $new_details->user_type,
                     'user_id' => $new_details->user_id,
@@ -65,6 +65,7 @@ class Users extends Admin_Controller
                     'user_email' => $new_details->user_email,
                     'user_company' => $new_details->user_company,
                     'user_language' => isset($new_details->user_language) ? $new_details->user_language : 'system',
+                    //'custom_fields' => $custom_user_data,
                 );
 
                 $this->session->set_userdata($session_data);

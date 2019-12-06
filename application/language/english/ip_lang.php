@@ -696,5 +696,6 @@ $lang = array(
     // Types
     'true'                                         => 'True',
     'false'                                        => 'False',
-    'product_image'									=> 'Product Image'
+    'product_image'									=> 'Product Image',
+    'access_denied'                                 => 'Access Denied',
 );

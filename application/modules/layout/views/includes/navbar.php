@@ -6,7 +6,7 @@
                 <?php echo trans('menu') ?> &nbsp; <i class="fa fa-bars"></i>
             </button>
         </div>
-
+        
         <div class="collapse navbar-collapse" id="ip-navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><?php echo anchor('dashboard', trans('dashboard'), 'class="hidden-md"') ?>

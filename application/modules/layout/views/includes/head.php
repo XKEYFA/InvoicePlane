@@ -52,9 +52,9 @@
     }
   ]
 	});
-	
+	// #item-desc-textarea, #item-desc-textarea2, textarea[name="item_description"]
 	tinymce.init(
-	{ selector:'#item-desc-textarea, #item-desc-textarea2', 
+	{ selector:'.textarea-desc-wysiwyg', 
 	block_formats: 'Paragraph=p;Header 1=h1;Header 2=h2;Header 3=h3', 
 	forced_root_block: false,
 	height:100,
