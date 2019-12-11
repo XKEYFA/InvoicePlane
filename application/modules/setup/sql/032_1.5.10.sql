@@ -15,3 +15,32 @@ ALTER TABLE `ip_quotes` ADD `quote_oncost_discount_amount` DECIMAL(20,2) NULL AF
 
 ALTER TABLE `ip_quote_tax_rates` ADD `quote_tax_rate_oncost_amount` DECIMAL(20,2) NULL AFTER `quote_tax_rate_amount`;
 
+CREATE TABLE `ip_users_partner` (
+  `user_partner_id` int(11) NOT NULL,
+  `user_partner_name` text DEFAULT NULL,
+  `user_partner_image` text DEFAULT NULL,
+  `user_partner_company` text DEFAULT NULL,
+  `user_partner_address_1` text DEFAULT NULL,
+  `user_partner_address_2` text DEFAULT NULL,
+  `user_partner_city` text DEFAULT NULL,
+  `user_partner_state` text DEFAULT NULL,
+  `user_partner_zip` text DEFAULT NULL,
+  `user_partner_country` text DEFAULT NULL,
+  `user_partner_phone` text DEFAULT NULL,
+  `user_partner_fax` text DEFAULT NULL,
+  `user_partner_mobile` text DEFAULT NULL,
+  `user_partner_email` text DEFAULT NULL,
+  `user_partner_web` text DEFAULT NULL,
+  `user_partner_vat_id` text DEFAULT NULL,
+  `user_partner_tax_code` text DEFAULT NULL,
+  `user_partner_all_clients` int(1) NOT NULL DEFAULT 0,
+  `user_partner_subscribernumber` varchar(40) DEFAULT NULL,
+  `user_partner_iban` varchar(34) DEFAULT NULL,
+  `user_partner_gln` bigint(13) DEFAULT NULL,
+  `user_partner_rcc` varchar(7) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+ALTER TABLE `ip_users`  ADD `user_partner_id` INT NULL  AFTER `user_rcc`;
+
+
+

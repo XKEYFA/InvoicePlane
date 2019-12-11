@@ -24,6 +24,8 @@ class Ps_Admin_Controller extends Ps_Intern_Controller
     public function __construct()
     {
         parent::__construct();
+        if (!$this->session->has_userdata('user_type'))
+            redirect('sessions/logout');
         if ($this->session->userdata('user_type') != 3
         && $this->session->userdata('user_type') != 1
             ) {

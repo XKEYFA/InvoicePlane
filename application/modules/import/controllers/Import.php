@@ -13,7 +13,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Class Import
  */
-class Import extends Ps_Extern_Controller
+class Import extends Ps_Admin_Controller
 {
     private $allowed_files = array(
         0 => 'clients.csv',

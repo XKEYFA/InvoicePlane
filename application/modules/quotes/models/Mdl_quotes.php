@@ -76,7 +76,8 @@ class Mdl_Quotes extends Response_Model
 			ip_users.user_email,
 			ip_users.user_web,
 			ip_users.user_vat_id,
-			ip_users.user_tax_code,
+            ip_users.user_tax_code,
+            ip_user_partners.*,
 			ip_clients.*,
 			ip_quote_amounts.quote_amount_id,
 			IFnull(ip_quote_amounts.quote_item_subtotal, '0.00') AS quote_item_subtotal,
@@ -102,6 +103,7 @@ class Mdl_Quotes extends Response_Model
         $this->db->join('ip_users', 'ip_users.user_id = ip_quotes.user_id');
         $this->db->join('ip_quote_amounts', 'ip_quote_amounts.quote_id = ip_quotes.quote_id', 'left');
         $this->db->join('ip_invoices', 'ip_invoices.invoice_id = ip_quotes.invoice_id', 'left');
+        $this->db->join('ip_user_partners', 'ip_users.user_partner_id = ip_user_partners.user_partner_id', 'left');
     }
 
     /**
@@ -416,6 +418,33 @@ class Mdl_Quotes extends Response_Model
     public function by_client($client_id)
     {
         $this->filter_where('ip_quotes.client_id', $client_id);
+        return $this;
+    }
+
+     /**
+     * @param $user_id
+     * @return $this
+     */
+    public function by_user($user_id)
+    {
+        $this->filter_where('ip_quotes.user_id', $user_id);
+        return $this;
+    }
+
+    /** By Partner of user_id
+     * @param $user_id
+     * @return $this
+     */
+    public function by_user_partner($user_id)
+    {
+        $this->load->model('users/mdl_users');
+        $user = $this->mdl_users->get_by_id($user_id);
+        if ($user->user_partner_id != null)
+        {
+            $this->filter_where('ip_user_partners.user_partner_id', $user->user_partner_id);
+        } else {
+            $this->filter_where('ip_quotes.user_id', $user_id);
+        }
         return $this;
     }
 

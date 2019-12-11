@@ -698,4 +698,6 @@ $lang = array(
     'false'                                        => 'False',
     'product_image'									=> 'Product Image',
     'access_denied'                                 => 'Access Denied',
+    'created_by'                                  => 'Created by',
+    'user_partner'                                  => 'Partner',
 );

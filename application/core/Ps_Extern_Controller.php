@@ -24,7 +24,8 @@ class Ps_Extern_Controller extends User_Controller
     {
         //parent::__construct();
         parent::__construct('user_type', -1);
-
+        if (!$this->session->has_userdata('user_type'))
+            redirect('sessions/logout');
         if ($this->session->userdata('user_type') != 5
         && $this->session->userdata('user_type') != 4
         && $this->session->userdata('user_type') != 3

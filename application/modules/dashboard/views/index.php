@@ -19,14 +19,18 @@
                         <i class="fa fa-file fa-margin"></i>
                         <span class="hidden-xs"><?php _trans('create_quote'); ?></span>
                     </a>
+                    <?php if (isAdmin($user_type)) { ?>
                     <a href="javascript:void(0)" class="create-invoice btn btn-default">
                         <i class="fa fa-file-text fa-margin"></i>
-                        <span class="hidden-xs"><?php _trans('create_invoice'); ?></span>
+                        <span class="hidden-xs"><?php _trans('create_invoice');?></span>
                     </a>
+                    <?php } ?>
+                    <?php if (isAdmin($user_type)) { ?>
                     <a href="<?php echo site_url('payments/form'); ?>" class="btn btn-default">
                         <i class="fa fa-credit-card fa-margin"></i>
                         <span class="hidden-xs"><?php _trans('enter_payment'); ?></span>
                     </a>
+                    <?php } ?>
                 </div>
 
             </div>
@@ -76,8 +80,9 @@
             </div>
 
         </div>
+        
         <div class="col-xs-12 col-md-6">
-
+            <?php if ($user_type == 1) { ?>
             <div id="panel-invoice-overview" class="panel panel-default overview">
 
                 <div class="panel-heading">
@@ -102,8 +107,9 @@
                     <?php } ?>
                 </table>
             </div>
+            <?php } ?>
 
-
+            <?php if ($user_type == 1) { ?>
             <?php if (empty($overdue_invoices)) { ?>
                 <div class="panel panel-default panel-heading">
                     <span class="text-muted"><?php _trans('no_overdue_invoices'); ?></span>
@@ -121,10 +127,10 @@
                     </span>
                 </div>
             <?php } ?>
-
+            <?php } ?>    
         </div>
     </div>
-
+                        
     <div class="row">
         <div class="col-xs-12 col-md-6">
 
@@ -141,6 +147,7 @@
                             <th style="min-width: 15%;"><?php _trans('date'); ?></th>
                             <th style="min-width: 15%;"><?php _trans('quote'); ?></th>
                             <th style="min-width: 35%;"><?php _trans('client'); ?></th>
+                            <th style="min-width: 15%;"><?php _trans('created_by'); ?></th>
                             <th style="text-align: right;"><?php _trans('balance'); ?></th>
                             <th></th>
                         </tr>
@@ -162,6 +169,9 @@
                                 </td>
                                 <td>
                                     <?php echo anchor('clients/view/' . $quote->client_id, htmlsc(format_client($quote))); ?>
+                                </td>
+                                <td>
+                                    <?php echo $quote->user_name; ?>
                                 </td>
                                 <td class="amount">
                                     <?php echo format_currency($quote->quote_total); ?>
@@ -185,6 +195,7 @@
             </div>
 
         </div>
+        <?php if ($user_type == 1) { ?>
         <div class="col-xs-12 col-md-6">
 
             <div id="panel-recent-invoices" class="panel panel-default">
@@ -264,6 +275,7 @@
 
                 </div>
             </div>
+            <?php } ?>
 
         </div>
     </div>

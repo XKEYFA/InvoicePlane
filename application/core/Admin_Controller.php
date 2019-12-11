@@ -24,6 +24,8 @@ class Admin_Controller extends Ps_Admin_Controller
     public function __construct()
     {
         parent::__construct();
+        if (!$this->session->has_userdata('user_type'))
+            redirect('sessions/logout');
         if ($this->session->userdata('user_type') != 1
             ) {
             redirect('dashboard/access_denied');

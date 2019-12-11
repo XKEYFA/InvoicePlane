@@ -36,12 +36,17 @@ class Mdl_Users extends Response_Model
 
     public function default_select()
     {
-        $this->db->select('SQL_CALC_FOUND_ROWS ip_users.*', false);
+        $this->db->select('SQL_CALC_FOUND_ROWS ip_users.*, ip_user_partners.*', false);
     }
 
     public function default_order_by()
     {
         $this->db->order_by('ip_users.user_name');
+    }
+
+    public function default_join()
+    {
+        $this->db->join('ip_user_partners', 'ip_users.user_partner_id = ip_user_partners.user_partner_id','left');
     }
 
     /**
@@ -132,7 +137,10 @@ class Mdl_Users extends Response_Model
             ),
             'user_rcc' => array(
                 'field' => 'user_rcc'
-            )
+            ),
+            'user_partner_id' => array(
+                'field' => 'user_partner_id'
+            ),
         );
     }
 
@@ -214,7 +222,10 @@ class Mdl_Users extends Response_Model
             ),
             'user_rcc' => array(
                 'field' => 'user_rcc'
-            )
+            ),
+            'user_partner_id' => array(
+                'field' => 'user_partner_id'
+            ),
         );
     }
 
@@ -301,6 +312,16 @@ class Mdl_Users extends Response_Model
         }
 
         return $id;
+    }
+
+     /**
+     * @param $user_id
+     * @return $this
+     */
+    public function by_user($user_id)
+    {
+        $this->filter_where('user_id', $user_id);
+        return $this;
     }
 
     /**

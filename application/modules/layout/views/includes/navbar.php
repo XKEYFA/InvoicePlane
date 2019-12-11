@@ -36,7 +36,7 @@
                         <li><?php echo anchor('quotes/index', trans('view_quotes')); ?></li>
                     </ul>
                 </li>
-
+                <?php if (isAllowedForAdmin($this->session->userdata('user_type'))) { ?>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-caret-down"></i> &nbsp;
@@ -49,7 +49,9 @@
                         <li><?php echo anchor('invoices/recurring/index', trans('view_recurring_invoices')); ?></li>
                     </ul>
                 </li>
-
+                
+                <?php } ?>
+                <?php if (isAllowedForAdmin($this->session->userdata('user_type'))) { ?>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-caret-down"></i> &nbsp;
@@ -62,7 +64,9 @@
                         <li><?php echo anchor('payments/online_logs', trans('view_payment_logs')); ?></li>
                     </ul>
                 </li>
+                <?php } ?>
 
+                <?php if (isAllowedForPsInternal($this->session->userdata('user_type'))) { ?>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-caret-down"></i> &nbsp;
@@ -76,7 +80,9 @@
                         <li><?php echo anchor('units/index', trans('product_units')); ?></li>
                     </ul>
                 </li>
-
+                <?php } ?>
+                
+                <?php if (isAllowedForAdmin($this->session->userdata('user_type'))) { ?>
                 <li class="dropdown <?php echo get_setting('projects_enabled') == 1 ?: 'hidden'; ?>">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-caret-down"></i> &nbsp;
@@ -89,7 +95,8 @@
                         <li><?php echo anchor('projects/index', trans('projects')); ?></li>
                     </ul>
                 </li>
-
+                <?php } ?>
+                <?php if (isAllowedForPsAdmin($this->session->userdata('user_type'))) { ?>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-caret-down"></i> &nbsp;
@@ -103,7 +110,7 @@
                         <li><?php echo anchor('reports/sales_by_year', trans('sales_by_date')); ?></li>
                     </ul>
                 </li>
-
+                <?php } ?>
             </ul>
 
             <?php if (isset($filter_display) and $filter_display == true) { ?>
@@ -134,19 +141,33 @@
                         <span class="visible-xs">&nbsp;<?php _trans('settings'); ?></span>
                     </a>
                     <ul class="dropdown-menu">
+                        <?php if (isAllowedForPsAdmin($this->session->userdata('user_type'))) { ?>
                         <li><?php echo anchor('custom_fields/index', trans('custom_fields')); ?></li>
+                        <?php } ?>
+                        <?php if (isAllowedForPsAdmin($this->session->userdata('user_type'))) { ?>
                         <li><?php echo anchor('email_templates/index', trans('email_templates')); ?></li>
+                        <?php } ?>
+                        <?php if (isAllowedForPsAdmin($this->session->userdata('user_type'))) { ?>
                         <li><?php echo anchor('invoice_groups/index', trans('invoice_groups')); ?></li>
+                        <?php } ?>
+                        <?php if (isAllowedForPsAdmin($this->session->userdata('user_type'))) { ?>
                         <li><?php echo anchor('invoices/archive', trans('invoice_archive')); ?></li>
+                        <?php } ?>
                         <!-- // temporarily disabled
                         <li><?php echo anchor('item_lookups/index', trans('item_lookups')); ?></li>
                         -->
+                        <?php if (isAllowedForPsAdmin($this->session->userdata('user_type'))) { ?>
                         <li><?php echo anchor('payment_methods/index', trans('payment_methods')); ?></li>
+                        <?php } ?>
+                        <?php if (isAllowedForPsAdmin($this->session->userdata('user_type'))) { ?>
                         <li><?php echo anchor('tax_rates/index', trans('tax_rates')); ?></li>
+                        <?php } ?>
                         <li><?php echo anchor('users/index', trans('user_accounts')); ?></li>
                         <li class="divider hidden-xs hidden-sm"></li>
+                        <?php if (isAdmin($this->session->userdata('user_type'))) { ?>
                         <li><?php echo anchor('settings', trans('system_settings')); ?></li>
                         <li><?php echo anchor('import', trans('import_data')); ?></li>
+                        <?php } ?>
                     </ul>
                 </li>
                 <li>

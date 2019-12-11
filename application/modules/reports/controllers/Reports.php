@@ -13,7 +13,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Class Reports
  */
-class Reports extends Ps_Extern_Controller
+class Reports extends Ps_Admin_Controller
 {
     /**
      * Reports constructor.

@@ -30,9 +30,15 @@ class Users extends Ps_Extern_Controller
      */
     public function index($page = 0)
     {
+        $user_id = -1;
+        if (isPsInternal($this->session->userdata('user_type')) || isPsExternal($this->session->userdata('user_type')))
+        {
+            $this->mdl_users->by_user($this->session->userdata('user_id'));
+        }
+        $this->load->model('mdl_user_partners');
         $this->mdl_users->paginate(site_url('users/index'), $page);
+                
         $users = $this->mdl_users->result();
-
         $this->layout->set('users', $users);
         $this->layout->set('user_types', $this->mdl_users->user_types());
         $this->layout->buffer('content', 'users/index');
@@ -49,6 +55,7 @@ class Users extends Ps_Extern_Controller
         }
 
         if ($this->mdl_users->run_validation(($id) ? 'validation_rules_existing' : 'validation_rules')) {
+           
             $id = $this->mdl_users->save($id);
 
             $this->load->model('custom_fields/mdl_user_custom');
@@ -108,6 +115,7 @@ class Users extends Ps_Extern_Controller
         $this->load->model('custom_fields/mdl_custom_fields');
         $this->load->model('custom_fields/mdl_user_custom');
         $this->load->model('custom_values/mdl_custom_values');
+        $this->load->model('mdl_user_partners');
         $this->load->helper('country');
 
         $custom_fields = $this->mdl_custom_fields->by_table('ip_user_custom')->get()->result();
@@ -134,6 +142,8 @@ class Users extends Ps_Extern_Controller
             }
         }
 
+        $user_partners = $this->mdl_user_partners->get()->result();
+
         $this->layout->set(
             array(
                 'id' => $id,
@@ -145,6 +155,7 @@ class Users extends Ps_Extern_Controller
                 'selected_country' => $this->mdl_users->form_value('user_country') ?: get_setting('default_country'),
                 'clients' => $this->mdl_clients->where('client_active', 1)->get()->result(),
                 'languages' => get_available_languages(),
+                'partners' => $user_partners,
             )
         );
 

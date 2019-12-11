@@ -27,7 +27,8 @@ class User_Controller extends Base_Controller
     public function __construct($required_key, $required_val)
     {
         parent::__construct();
-
+        if (!$this->session->has_userdata('user_type'))
+            redirect('sessions/logout');
         if ($this->session->userdata($required_key) != $required_val && $required_val != -1) {
             redirect('dashboard/access_denied');
         }

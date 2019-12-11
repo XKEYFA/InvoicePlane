@@ -8,6 +8,8 @@
             <th><?php _trans('created'); ?></th>
             <th><?php _trans('due_date'); ?></th>
             <th><?php _trans('client_name'); ?></th>
+            <th><?php _trans('user_partner'); ?></th>
+            <th><?php _trans('created_by'); ?></th>
             <th style="text-align: right; padding-right: 25px;"><?php _trans('amount'); ?></th>
             <th style="text-align: right; padding-right: 25px;"><?php _trans('amount oncost'); ?></th>
             <th><?php _trans('options'); ?></th>
@@ -43,12 +45,18 @@
                     <?php echo date_from_mysql($quote->quote_date_expires); ?>
                 </td>
                 <td>
+                    <?php /*echo print_r(get_object_vars($quote));*/ ?>
                     <a href="<?php echo site_url('clients/view/' . $quote->client_id); ?>"
                        title="<?php _trans('view_client'); ?>">
                         <?php _htmlsc(format_client($quote)); ?>
                     </a>
                 </td>
-                
+                <td>
+                    <?php echo $quote->user_partner_name; ?>
+                </td>
+                <td>
+                    <?php echo $quote->user_name; ?>
+                </td>
                 <td style="text-align: right; padding-right: 25px;">
                     <?php echo format_currency($quote->quote_total); ?>
                 </td>

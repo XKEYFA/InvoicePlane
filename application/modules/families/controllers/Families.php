@@ -13,7 +13,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Class Families
  */
-class Families extends Ps_Extern_Controller
+class Families extends Ps_Intern_Controller
 {
     /**
      * Families constructor.

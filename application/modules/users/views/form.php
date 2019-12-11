@@ -12,15 +12,18 @@ $cv = $this->controller->view_data["custom_values"];
 
         function show_field_rights() {
             $('#user_type').attr('disabled', true);
-            var user_type = $this->session->userdata('user_type');
-            
-            if (user_type === '1') {
+            $('#user_partner').attr('disabled', true);
+            var user_type = '<?php echo $this->session->userdata('user_type'); ?>';
+            var admin = '<?php echo isAdmin($this->session->userdata('user_type')); ?>';
+            if (admin) {
                 $('#user_type').attr('disabled', false);
+                $('#user_partner').attr('disabled', false);
             } else if (user_type === '2') {
+
             } else if (user_type === '3') {
-
+                $('#user_partner').attr('disabled', false);
             } else if (user_type === '4') {
-
+                $('#user_partner').attr('disabled', false);
             } else if (user_type === '5') {
 
             }
@@ -45,11 +48,11 @@ $cv = $this->controller->view_data["custom_values"];
             } else if (user_type === '2') {
                 $('#guest_fields').show();
             } else if (user_type === '3') {
-
+                $('#administrator_fields').show();
             } else if (user_type === '4') {
-
+                $('#administrator_fields').show();
             } else if (user_type === '5') {
-
+                $('#administrator_fields').show();
             }
         }
 
@@ -167,6 +170,34 @@ $cv = $this->controller->view_data["custom_values"];
                                     <?php } ?>
                                 </select>
                             </div>
+
+                            <div class="form-group">
+                                <label for="user_partner">
+                                    <?php _trans('user_partner'); ?>
+                                </label>
+                                <select name="user_partner_id" id="user_partner" class="form-control simple-select">
+                                    <?php foreach ($partners as $partner) {
+                                        ?>
+                                        <option value="<?php echo $partner->user_partner_id; ?>"
+                                            <?php check_select($this->mdl_users->form_value('user_partner_id', true), $partner->user_partner_id); ?>>
+                                            <?php echo ucfirst($partner->user_partner_name); ?>
+                                        </option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <!-- Custom fields -->
+                            <?php foreach ($custom_fields as $custom_field): ?>
+                                    <?php if ($custom_field->custom_field_location != 1) {
+                                        continue;
+                                    } ?>
+                                    <?php
+                                    print_field(
+                                        $this->mdl_users,
+                                        $custom_field,
+                                        $cv
+                                    );
+                                    ?>
+                                <?php endforeach; ?>
                         </div>
 
                     </div>

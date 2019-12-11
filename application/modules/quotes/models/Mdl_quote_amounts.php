@@ -295,7 +295,7 @@ class Mdl_Quote_Amounts extends CI_Model
      * @param string $period
      * @return array
      */
-    public function get_status_totals($period = '')
+    public function get_status_totals($period = '', $user_id = -1)
     {
         switch ($period) {
             default:
@@ -309,6 +309,7 @@ class Mdl_Quote_Amounts extends CI_Model
 					JOIN ip_quotes ON ip_quotes.quote_id = ip_quote_amounts.quote_id
                         AND MONTH(ip_quotes.quote_date_created) = MONTH(NOW())
                         AND YEAR(ip_quotes.quote_date_created) = YEAR(NOW())
+                    " . ($user_id != '-1' ? "AND ip_quotes.user_id = '" . $user_id  . "'" : "") . "
 					GROUP BY ip_quotes.quote_status_id")->result_array();
                 break;
             case 'last-month':
@@ -321,6 +322,7 @@ class Mdl_Quote_Amounts extends CI_Model
 					JOIN ip_quotes ON ip_quotes.quote_id = ip_quote_amounts.quote_id
                         AND MONTH(ip_quotes.quote_date_created) = MONTH(NOW() - INTERVAL 1 MONTH)
                         AND YEAR(ip_quotes.quote_date_created) = YEAR(NOW())
+                    " . ($user_id != '-1' ? "AND ip_quotes.user_id = '" . $user_id  . "'" : "") . "
 					GROUP BY ip_quotes.quote_status_id")->result_array();
                 break;
             case 'this-quarter':
@@ -333,6 +335,7 @@ class Mdl_Quote_Amounts extends CI_Model
 					JOIN ip_quotes ON ip_quotes.quote_id = ip_quote_amounts.quote_id
                         AND QUARTER(ip_quotes.quote_date_created) = QUARTER(NOW())
                         AND YEAR(ip_quotes.quote_date_created) = YEAR(NOW())
+                    " . ($user_id != '-1' ? "AND ip_quotes.user_id = '" . $user_id  . "'" : "") . "
 					GROUP BY ip_quotes.quote_status_id")->result_array();
                 break;
             case 'last-quarter':
@@ -345,6 +348,7 @@ class Mdl_Quote_Amounts extends CI_Model
 					JOIN ip_quotes ON ip_quotes.quote_id = ip_quote_amounts.quote_id
                         AND QUARTER(ip_quotes.quote_date_created) = QUARTER(NOW() - INTERVAL 1 QUARTER)
                         AND YEAR(ip_quotes.quote_date_created) = YEAR(NOW())
+                        " . ($user_id != '-1' ? "AND ip_quotes.user_id = '" . $user_id  . "'" : "") . "
 					GROUP BY ip_quotes.quote_status_id")->result_array();
                 break;
             case 'this-year':
@@ -356,6 +360,7 @@ class Mdl_Quote_Amounts extends CI_Model
 					FROM ip_quote_amounts
 					JOIN ip_quotes ON ip_quotes.quote_id = ip_quote_amounts.quote_id
                         AND YEAR(ip_quotes.quote_date_created) = YEAR(NOW())
+                        " . ($user_id != '-1' ? "AND ip_quotes.user_id = '" . $user_id  . "'" : "") . "
 					GROUP BY ip_quotes.quote_status_id")->result_array();
                 break;
             case 'last-year':
@@ -367,6 +372,7 @@ class Mdl_Quote_Amounts extends CI_Model
 					FROM ip_quote_amounts
 					JOIN ip_quotes ON ip_quotes.quote_id = ip_quote_amounts.quote_id
                         AND YEAR(ip_quotes.quote_date_created) = YEAR(NOW() - INTERVAL 1 YEAR)
+                        " . ($user_id != '-1' ? "AND ip_quotes.user_id = '" . $user_id  . "'" : "") . "
 					GROUP BY ip_quotes.quote_status_id")->result_array();
                 break;
         }

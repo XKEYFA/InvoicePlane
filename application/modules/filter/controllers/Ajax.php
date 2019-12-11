@@ -49,8 +49,14 @@ class Ajax extends Ps_Extern_Controller
         foreach ($keywords as $keyword) {
             if ($keyword) {
                 $keyword = strtolower($keyword);
-                $this->mdl_quotes->like("CONCAT_WS('^',LOWER(quote_number),quote_date_created,quote_date_expires,LOWER(client_name),quote_total)", $keyword);
+                $this->mdl_quotes->like("CONCAT_WS('^',LOWER(quote_number),quote_date_created,quote_date_expires,LOWER(client_name),quote_total,user_name)", $keyword);
             }
+        }
+
+        // Check User ps internal oder ps external, only show quotes of themselve
+        if (isPsExternal($this->session->userdata('user_type')))
+        {
+            $this->mdl_quotes->by_user($this->session->userdata('user_id'));
         }
 
         $data = array(

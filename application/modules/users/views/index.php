@@ -25,6 +25,7 @@
                 <th><?php _trans('name'); ?></th>
                 <th><?php _trans('user_type'); ?></th>
                 <th><?php _trans('email_address'); ?></th>
+                <th><?php _trans('user_partner'); ?></th>
                 <th><?php _trans('options'); ?></th>
             </tr>
             </thead>
@@ -35,6 +36,7 @@
                     <td><?php _htmlsc($user->user_name); ?></td>
                     <td><?php echo $user_types[$user->user_type]; ?></td>
                     <td><?php echo $user->user_email; ?></td>
+                    <td><?php echo ($user->user_partner_id != null ? $user->user_partner_name : "") ?></td>
                     <td>
                         <div class="options btn-group btn-group-sm">
                             <?php if ($user->user_type == 2) : ?>

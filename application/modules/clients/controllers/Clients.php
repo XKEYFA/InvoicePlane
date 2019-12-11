@@ -197,23 +197,30 @@ class Clients extends Ps_Extern_Controller
             ->get()->row();
 
         $custom_fields = $this->mdl_client_custom->get_by_client($client_id)->result();
-
+        
         $this->mdl_client_custom->prep_form($client_id);
 
         if (!$client) {
             show_404();
         }
 
+        // Check User ps internal oder ps external, only show quotes of themselve
+        if (isPsExternal($this->session->userdata('user_type')))
+        {
+            $this->mdl_quotes->by_user($this->session->userdata('user_id'));
+        }
+        $quotes = $this->mdl_quotes->by_client($client_id)->limit(20)->get()->result();
+       
         $this->layout->set(
             array(
                 'client' => $client,
                 'client_notes' => $this->mdl_client_notes->where('client_id', $client_id)->get()->result(),
                 'invoices' => $this->mdl_invoices->by_client($client_id)->limit(20)->get()->result(),
-                'quotes' => $this->mdl_quotes->by_client($client_id)->limit(20)->get()->result(),
+                'quotes' => $quotes,
                 'payments' => $this->mdl_payments->by_client($client_id)->limit(20)->get()->result(),
                 'custom_fields' => $custom_fields,
                 'quote_statuses' => $this->mdl_quotes->statuses(),
-                'invoice_statuses' => $this->mdl_invoices->statuses()
+                'invoice_statuses' => $this->mdl_invoices->statuses(),
             )
         );
 

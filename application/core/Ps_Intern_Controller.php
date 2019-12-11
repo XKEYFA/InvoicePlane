@@ -24,11 +24,14 @@ class Ps_Intern_Controller extends Ps_Extern_Controller
     {
         //parent::__construct();
          parent::__construct();
+         if (!$this->session->has_userdata('user_type'))
+            redirect('sessions/logout');
+
          if ($this->session->userdata('user_type') != 4
          && $this->session->userdata('user_type') != 3
          && $this->session->userdata('user_type') != 1
              ) {
-             redirect('dashboard/access_denied');
+             redirect('access_denied');
          }
         
     }

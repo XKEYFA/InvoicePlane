@@ -29,6 +29,7 @@
                                     <i class="fa fa-eye fa-margin"></i> <?php _trans('view'); ?>
                                 </a>
                             </li>
+                            
                             <li>
                                 <a href="<?php echo site_url('clients/form/' . $client->client_id); ?>">
                                     <i class="fa fa-edit fa-margin"></i> <?php _trans('edit'); ?>
@@ -40,12 +41,14 @@
                                     <i class="fa fa-file fa-margin"></i> <?php _trans('create_quote'); ?>
                                 </a>
                             </li>
+                            <?php if (isAllowedForAdmin($this->session->userdata('user_type'))) { ?>
                             <li>
                                 <a href="#" class="client-create-invoice"
                                    data-client-id="<?php echo $client->client_id; ?>">
                                     <i class="fa fa-file-text fa-margin"></i> <?php _trans('create_invoice'); ?>
                                 </a>
                             </li>
+                            <?php } ?>
                             <li>
                                 <form action="<?php echo site_url('clients/delete/' . $client->client_id); ?>"
                                       method="POST">

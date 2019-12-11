@@ -13,7 +13,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Class Products
  */
-class Products extends Ps_Extern_Controller
+class Products extends Ps_Intern_Controller
 {
     /**
      * Products constructor.

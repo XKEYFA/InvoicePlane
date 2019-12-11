@@ -11,8 +11,8 @@ $cv = $this->controller->view_data['custom_values'];
     });
 </script>
 
-<form method="post">
-
+<form method="post" autocomplete="off"  >
+   
     <input type="hidden" name="<?php echo $this->config->item('csrf_token_name'); ?>"
            value="<?php echo $this->security->get_csrf_hash() ?>">
 
@@ -61,7 +61,7 @@ $cv = $this->controller->view_data['custom_values'];
                             </label>
                             <input id="client_name" name="client_name" type="text" class="form-control" required
                                    autofocus
-                                   value="<?php echo $this->mdl_clients->form_value('client_name', true); ?>">
+                                   value="<?php echo $this->mdl_clients->form_value('client_name', true); ?>" autocomplete="no">
                         </div>
 
                         <div class="form-group">
@@ -69,7 +69,7 @@ $cv = $this->controller->view_data['custom_values'];
                                 <?php _trans('client_surname_optional'); ?>
                             </label>
                             <input id="client_surname" name="client_surname" type="text" class="form-control"
-                                   value="<?php echo $this->mdl_clients->form_value('client_surname', true); ?>">
+                                   value="<?php echo $this->mdl_clients->form_value('client_surname', true); ?>" autocomplete="no">
                         </div>
 
                         <div class="form-group no-margin">
@@ -111,7 +111,7 @@ $cv = $this->controller->view_data['custom_values'];
 
                             <div class="controls">
                                 <input type="text" name="client_address_1" id="client_address_1" class="form-control"
-                                       value="<?php echo $this->mdl_clients->form_value('client_address_1', true); ?>">
+                                       value="<?php echo $this->mdl_clients->form_value('client_address_1', true); ?>" autocomplete="no">
                             </div>
                         </div>
 
@@ -120,7 +120,7 @@ $cv = $this->controller->view_data['custom_values'];
 
                             <div class="controls">
                                 <input type="text" name="client_address_2" id="client_address_2" class="form-control"
-                                       value="<?php echo $this->mdl_clients->form_value('client_address_2', true); ?>">
+                                       value="<?php echo $this->mdl_clients->form_value('client_address_2', true); ?>" autocomplete="no">
                             </div>
                         </div>
 
@@ -129,7 +129,7 @@ $cv = $this->controller->view_data['custom_values'];
 
                             <div class="controls">
                                 <input type="text" name="client_city" id="client_city" class="form-control"
-                                       value="<?php echo $this->mdl_clients->form_value('client_city', true); ?>">
+                                       value="<?php echo $this->mdl_clients->form_value('client_city', true); ?>" autocomplete="no">
                             </div>
                         </div>
 
@@ -138,7 +138,7 @@ $cv = $this->controller->view_data['custom_values'];
 
                             <div class="controls">
                                 <input type="text" name="client_state" id="client_state" class="form-control"
-                                       value="<?php echo $this->mdl_clients->form_value('client_state', true); ?>">
+                                       value="<?php echo $this->mdl_clients->form_value('client_state', true); ?>" autocomplete="no">
                             </div>
                         </div>
 
@@ -147,7 +147,7 @@ $cv = $this->controller->view_data['custom_values'];
 
                             <div class="controls">
                                 <input type="text" name="client_zip" id="client_zip" class="form-control"
-                                       value="<?php echo $this->mdl_clients->form_value('client_zip', true); ?>">
+                                       value="<?php echo $this->mdl_clients->form_value('client_zip', true); ?>" autocomplete="no">
                             </div>
                         </div>
 
@@ -192,7 +192,7 @@ $cv = $this->controller->view_data['custom_values'];
 
                             <div class="controls">
                                 <input type="text" name="client_phone" id="client_phone" class="form-control"
-                                       value="<?php echo $this->mdl_clients->form_value('client_phone', true); ?>">
+                                       value="<?php echo $this->mdl_clients->form_value('client_phone', true); ?>" autocomplete="no">
                             </div>
                         </div>
 
@@ -201,7 +201,7 @@ $cv = $this->controller->view_data['custom_values'];
 
                             <div class="controls">
                                 <input type="text" name="client_fax" id="client_fax" class="form-control"
-                                       value="<?php echo $this->mdl_clients->form_value('client_fax', true); ?>">
+                                       value="<?php echo $this->mdl_clients->form_value('client_fax', true); ?>" autocomplete="no">
                             </div>
                         </div>
 
@@ -210,7 +210,7 @@ $cv = $this->controller->view_data['custom_values'];
 
                             <div class="controls">
                                 <input type="text" name="client_mobile" id="client_mobile" class="form-control"
-                                       value="<?php echo $this->mdl_clients->form_value('client_mobile', true); ?>">
+                                       value="<?php echo $this->mdl_clients->form_value('client_mobile', true); ?>" autocomplete="no">
                             </div>
                         </div>
 
@@ -219,7 +219,7 @@ $cv = $this->controller->view_data['custom_values'];
 
                             <div class="controls">
                                 <input type="text" name="client_email" id="client_email" class="form-control"
-                                       value="<?php echo $this->mdl_clients->form_value('client_email', true); ?>">
+                                       value="<?php echo $this->mdl_clients->form_value('client_email', true); ?>" autocomplete="no">
                             </div>
                         </div>
 
@@ -228,7 +228,7 @@ $cv = $this->controller->view_data['custom_values'];
 
                             <div class="controls">
                                 <input type="text" name="client_web" id="client_web" class="form-control"
-                                       value="<?php echo $this->mdl_clients->form_value('client_web', true); ?>">
+                                       value="<?php echo $this->mdl_clients->form_value('client_web', true); ?>" autocomplete="no">
                             </div>
                         </div>
 

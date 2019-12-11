@@ -13,7 +13,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Class Projects
  */
-class Projects extends Ps_Extern_Controller
+class Projects extends Admin_Controller
 {
     /**
      * Projects constructor.

@@ -91,7 +91,7 @@ class Mdl_Client_Custom extends Validator
             $values = $this->get_by_client($id)->result();
             $this->load->helper('custom_values_helper');
             $this->load->module('custom_fields/mdl_custom_fields');
-
+            
             if ($values != null) {
                 foreach ($values as $value) {
                     $type = $value->custom_field_type;

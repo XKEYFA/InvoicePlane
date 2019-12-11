@@ -706,4 +706,6 @@ $lang = array(
     'product_oncost_price'                          => 'Monatliche Kosten',
     'amount oncost'                                 => 'Monatliche Kosten',
     'access_denied'                                 => 'Der Zugriff auf diese Seite wurde verweigert! Bei Fragen wenden sie sich an ihren Administrator.',
+    'created_by'                                  => 'Ersteller',
+    'user_partner'                               => 'Partner'
 );

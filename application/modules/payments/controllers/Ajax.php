@@ -13,7 +13,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Class Ajax
  */
-class Ajax extends Ps_Extern_Controller
+class Ajax extends Admin_Controller
 {
     public $ajax_controller = true;
 

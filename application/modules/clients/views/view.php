@@ -52,6 +52,7 @@ foreach ($custom_fields as $custom_field) {
                data-client-id="<?php echo $client->client_id; ?>">
                 <i class="fa fa-file"></i> <?php _trans('create_quote'); ?>
             </a>
+            <?php if (isAllowedForAdmin($this->session->userdata('user_type'))) { ?>
             <a href="#" class="btn btn-default client-create-invoice"
                data-client-id="<?php echo $client->client_id; ?>">
                 <i class="fa fa-file-text"></i> <?php _trans('create_invoice'); ?></a>
@@ -59,11 +60,14 @@ foreach ($custom_fields as $custom_field) {
                class="btn btn-default">
                 <i class="fa fa-edit"></i> <?php _trans('edit'); ?>
             </a>
+            <?php } ?>
+            <?php if (isAllowedForPsAdmin($this->session->userdata('user_type'))) { ?>
             <a class="btn btn-danger"
                href="<?php echo site_url('clients/delete/' . $client->client_id); ?>"
                onclick="return confirm('<?php _trans('delete_client_warning'); ?>');">
                 <i class="fa fa-trash-o"></i> <?php _trans('delete'); ?>
             </a>
+            <?php } ?>
         </div>
     </div>
 
@@ -72,8 +76,12 @@ foreach ($custom_fields as $custom_field) {
 <ul id="submenu" class="nav nav-tabs nav-tabs-noborder">
     <li class="active"><a data-toggle="tab" href="#clientDetails"><?php _trans('details'); ?></a></li>
     <li><a data-toggle="tab" href="#clientQuotes"><?php _trans('quotes'); ?></a></li>
+    <?php if (isAllowedForAdmin($this->session->userdata('user_type'))) { ?>
     <li><a data-toggle="tab" href="#clientInvoices"><?php _trans('invoices'); ?></a></li>
+    <?php } ?>
+    <?php if (isAllowedForAdmin($this->session->userdata('user_type'))) { ?>
     <li><a data-toggle="tab" href="#clientPayments"><?php _trans('payments'); ?></a></li>
+    <?php } ?>
 </ul>
 
 <div id="content" class="tabbable tabs-below no-padding">

@@ -13,7 +13,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Class Tasks
  */
-class Tasks extends Ps_Extern_Controller
+class Tasks extends Ps_Admin_Controller
 {
     /**
      * Tasks constructor.

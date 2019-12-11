@@ -10,7 +10,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
  * @link		https://invoiceplane.com
  */
 
-class Ajax extends Ps_Extern_Controller
+class Ajax extends Ps_Admin_Controller
 {
     /**
      * @param null|integer $invoice_id

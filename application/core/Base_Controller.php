@@ -63,6 +63,7 @@ class Base_Controller extends MX_Controller
             $this->load->helper('form');
             $this->load->helper('echo');
             $this->load->helper('client');
+            $this->load->helper('right_session');
 
             // Load setting model and load settings
             $this->load->model('settings/mdl_settings');

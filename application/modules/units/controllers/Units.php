@@ -13,7 +13,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Class Units
  */
-class Units extends Ps_Extern_Controller
+class Units extends Ps_Admin_Controller
 {
     /**
      * Units constructor.
