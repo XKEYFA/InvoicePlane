@@ -109,6 +109,9 @@ $cv = $this->controller->view_data["custom_values"];
         $('#btn_generate_pdf').click(function () {
             window.open('<?php echo site_url('quotes/generate_pdf/' . $quote_id); ?>', '_blank');
         });
+        $('#btn_generate_pdf2').click(function () {
+            window.open('<?php echo site_url('quotes/generate_pdf/' . $quote_id); ?>', '_blank');
+        });
 
         $(document).ready(function () {
             if ($('#quote_discount_percent').val().length > 0) {
@@ -185,6 +188,7 @@ $cv = $this->controller->view_data["custom_values"];
                         <?php _trans('send_email'); ?>
                     </a>
                 </li>
+                <?php if (isAllowedForAdmin($this->session->userdata('user_type'))) { ?>
                 <li>
                     <a href="#" id="btn_quote_to_invoice"
                        data-quote-id="<?php echo $quote_id; ?>">
@@ -192,6 +196,7 @@ $cv = $this->controller->view_data["custom_values"];
                         <?php _trans('quote_to_invoice'); ?>
                     </a>
                 </li>
+                <?php } ?>
                 <li>
                     <a href="#" id="btn_copy_quote"
                        data-quote-id="<?php echo $quote_id; ?>"
@@ -207,7 +212,11 @@ $cv = $this->controller->view_data["custom_values"];
                 </li>
             </ul>
         </div>
-
+        <a href="#" id="btn_generate_pdf2" class="btn btn-default btn-sm"
+                       data-quote-id="<?php echo $quote_id; ?>">
+                        <i class="fa fa-print fa-margin"></i>
+                        <?php _trans('download_pdf'); ?>
+                    </a>
         <a href="#" class="btn btn-success btn-sm ajax-loader" id="btn_save_quote">
             <i class="fa fa-check"></i>
             <?php _trans('save'); ?>
