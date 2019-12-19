@@ -42,5 +42,6 @@ CREATE TABLE `ip_users_partner` (
 
 ALTER TABLE `ip_users`  ADD `user_partner_id` INT NULL  AFTER `user_rcc`;
 
+ALTER TABLE `ip_clients` ADD `user_id` INT NULL DEFAULT NULL AFTER `client_gender`;
 
 

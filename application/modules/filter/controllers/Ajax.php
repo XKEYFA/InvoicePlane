@@ -46,6 +46,12 @@ class Ajax extends Ps_Extern_Controller
         $query = $this->input->post('filter_query');
         $keywords = explode(' ', $query);
 
+         // Check User ps internal oder ps external, only show quotes of themselve
+         if (isPsExternal($this->session->userdata('user_type')))
+         {
+             $this->mdl_quotes->by_user_partner($this->session->userdata('user_id'));
+         }
+
         foreach ($keywords as $keyword) {
             if ($keyword) {
                 $keyword = strtolower($keyword);
@@ -53,11 +59,7 @@ class Ajax extends Ps_Extern_Controller
             }
         }
 
-        // Check User ps internal oder ps external, only show quotes of themselve
-        if (isPsExternal($this->session->userdata('user_type')))
-        {
-            $this->mdl_quotes->by_user($this->session->userdata('user_id'));
-        }
+       
 
         $data = array(
             'quotes' => $this->mdl_quotes->get()->result(),
@@ -70,6 +72,11 @@ class Ajax extends Ps_Extern_Controller
     public function filter_clients()
     {
         $this->load->model('clients/mdl_clients');
+
+        // Check User ps internal oder ps external, only show quotes of themselve
+        if (isPsExternal($this->session->userdata('user_type'))) {
+            $this->mdl_clients->by_user_partner($this->session->userdata('user_id'));
+        }
 
         $query = $this->input->post('filter_query');
         $keywords = explode(' ', $query);

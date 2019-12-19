@@ -23,7 +23,7 @@ class Mdl_Clients extends Response_Model
     public function default_select()
     {
         $this->db->select(
-            'SQL_CALC_FOUND_ROWS ' . $this->table . '.*, ' .
+            'SQL_CALC_FOUND_ROWS ' . $this->table . '.*, ip_users.*, ip_user_partners.user_partner_name, ' .
             'CONCAT(' . $this->table . '.client_name, " ", ' . $this->table . '.client_surname) as client_fullname'
             , false);
     }
@@ -31,6 +31,12 @@ class Mdl_Clients extends Response_Model
     public function default_order_by()
     {
         $this->db->order_by('ip_clients.client_name');
+    }
+
+    public function default_join()
+    {
+        $this->db->join('ip_users', 'ip_users.user_id = ip_clients.user_id', 'left');
+        $this->db->join('ip_user_partners', 'ip_users.user_partner_id = ip_user_partners.user_partner_id', 'left');
     }
 
     public function validation_rules()
@@ -112,6 +118,11 @@ class Mdl_Clients extends Response_Model
                 'field' => 'client_veka',
                 'label' => trans('sumex_veka')
             ),
+            'user_id' => array(
+                'field' => 'user_id',
+                'label' => trans('user'),
+                'rule' => 'required'
+            )
         );
     }
 
@@ -223,6 +234,23 @@ class Mdl_Clients extends Response_Model
     public function is_inactive()
     {
         $this->filter_where('client_active', 0);
+        return $this;
+    }
+
+    /** By Partner of user_id
+     * @param $user_id
+     * @return $this
+     */
+    public function by_user_partner($user_id)
+    {
+        $this->load->model('users/mdl_users');
+        $user = $this->mdl_users->get_by_id($user_id);
+        if ($user->user_partner_id != null)
+        {
+            $this->filter_where('ip_user_partners.user_partner_id', $user->user_partner_id);
+        } else {
+            $this->filter_where('ip_quotes.user_id', $user_id);
+        }
         return $this;
     }
 

@@ -42,6 +42,12 @@ class Clients extends Ps_Extern_Controller
             $this->mdl_clients->$function();
         }
 
+        // Check User ps internal oder ps external, only show quotes of themselve
+        if (isPsExternal($this->session->userdata('user_type')))
+        {
+            $this->mdl_clients->by_user_partner($this->session->userdata('user_id'));
+        }
+
         $this->mdl_clients->with_total_balance()->paginate(site_url('clients/status/' . $status), $page);
         $clients = $this->mdl_clients->result();
 

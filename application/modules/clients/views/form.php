@@ -62,8 +62,9 @@ $cv = $this->controller->view_data['custom_values'];
                             <input id="client_name" name="client_name" type="text" class="form-control" required
                                    autofocus
                                    value="<?php echo $this->mdl_clients->form_value('client_name', true); ?>" autocomplete="no">
+                                   <input type="hidden" name="user_id" id="user_id" class="form-control" value="<?php if ($this->mdl_clients->form_value('user_id')) { echo $this->mdl_clients->form_value('user_id'); } else {echo $this->session->userdata('user_id'); } ?>">
                         </div>
-
+                   
                         <div class="form-group">
                             <label for="client_surname">
                                 <?php _trans('client_surname_optional'); ?>

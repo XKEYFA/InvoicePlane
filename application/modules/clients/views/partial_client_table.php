@@ -4,6 +4,8 @@
         <tr>
             <th><?php _trans('active'); ?></th>
             <th><?php _trans('client_name'); ?></th>
+            <th><?php _trans('user_partner'); ?></th>
+            <th><?php _trans('created_by'); ?></th>
             <th><?php _trans('email_address'); ?></th>
             <th><?php _trans('phone_number'); ?></th>
             <th class="amount"><?php _trans('balance'); ?></th>
@@ -15,6 +17,8 @@
             <tr>
                 <td><?php echo ($client->client_active) ? trans('yes') : trans('no'); ?></td>
                 <td><?php echo anchor('clients/view/' . $client->client_id, htmlsc(format_client($client))); ?></td>
+                <td><?php echo _htmlsc($client->user_partner_name); ?></td>
+                <td><?php echo _htmlsc($client->user_name); ?></td>
                 <td><?php _htmlsc($client->client_email); ?></td>
                 <td><?php _htmlsc($client->client_phone ? $client->client_phone : ($client->client_mobile ? $client->client_mobile : '')); ?></td>
                 <td class="amount"><?php echo format_currency($client->client_invoice_balance); ?></td>
