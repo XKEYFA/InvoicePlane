@@ -29,25 +29,34 @@ class Ajax extends Ps_Extern_Controller
         $query = $this->input->get('query');
         $permissiveSearchClients = $this->input->get('permissive_search_clients');
 
-        if (empty($query)) {
-            echo json_encode($response);
-            exit;
-        }
-
         // Search for chars "in the middle" of clients names
         $permissiveSearchClients ? $moreClientsQuery = '%' : $moreClientsQuery = '';
 
+        if (isPsExternal($this->session->userdata('user_type')))
+        {
+            $this->mdl_clients->by_user_partner($this->session->userdata('user_id'));
+        }
+
+        if ($query) {
         // Search for clients
-        $escapedQuery = $this->db->escape_str($query);
-        $escapedQuery = str_replace("%", "", $escapedQuery);
-        $clients = $this->mdl_clients
+            $escapedQuery = $this->db->escape_str($query);
+            $escapedQuery = str_replace("%", "", $escapedQuery);
+
+            $clients = $this->mdl_clients
+                ->where('client_active', 1)
+                ->having('client_name LIKE \'' . $moreClientsQuery . $escapedQuery . '%\'')
+                ->or_having('client_surname LIKE \'' . $moreClientsQuery . $escapedQuery . '%\'')
+                ->or_having('client_fullname LIKE \'' . $moreClientsQuery . $escapedQuery . '%\'')
+                ->order_by('client_name')
+                ->get()
+                ->result();
+        } else {
+            $clients = $this->mdl_clients
             ->where('client_active', 1)
-            ->having('client_name LIKE \'' . $moreClientsQuery . $escapedQuery . '%\'')
-            ->or_having('client_surname LIKE \'' . $moreClientsQuery . $escapedQuery . '%\'')
-            ->or_having('client_fullname LIKE \'' . $moreClientsQuery . $escapedQuery . '%\'')
             ->order_by('client_name')
             ->get()
             ->result();
+        }
 
         foreach ($clients as $client) {
             $response[] = [
@@ -69,6 +78,11 @@ class Ajax extends Ps_Extern_Controller
         $this->load->model('clients/mdl_clients');
 
         $response = [];
+
+        if (isPsExternal($this->session->userdata('user_type')))
+        {
+            $this->mdl_clients->by_user_partner($this->session->userdata('user_id'));
+        }
 
         $clients = $this->mdl_clients
             ->where('client_active', 1)

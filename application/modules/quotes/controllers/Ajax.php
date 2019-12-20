@@ -254,6 +254,11 @@ class Ajax extends Ps_Extern_Controller
         $this->load->model('tax_rates/mdl_tax_rates');
         $this->load->model('clients/mdl_clients');
 
+        if (isPsExternal($this->session->userdata('user_type')))
+        {
+            $this->mdl_clients->by_user_partner($this->session->userdata('user_id'));
+        }
+
         $data = [
             'invoice_groups' => $this->mdl_invoice_groups->get()->result(),
             'tax_rates' => $this->mdl_tax_rates->get()->result(),
