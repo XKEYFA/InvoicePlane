@@ -58,7 +58,11 @@ class Users extends Ps_Extern_Controller
         {
             redirect('users/form/' . $this->session->userdata('user_id'));
         }
-        
+
+        /*if ($id && isPsExternal($this->session->userdata('user_type')))
+        {
+            $_POST['user_type'] = $this->session->userdata('user_type');
+        }*/
 
         if ($this->mdl_users->run_validation(($id) ? 'validation_rules_existing' : 'validation_rules')) {
            

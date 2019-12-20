@@ -11,6 +11,7 @@ $cv = $this->controller->view_data["custom_values"];
         });
 
         function show_field_rights() {
+
             $('#user_type').attr('disabled', true);
             $('#user_partner').attr('disabled', true);
             var user_type = '<?php echo $this->session->userdata('user_type'); ?>';
@@ -27,6 +28,15 @@ $cv = $this->controller->view_data["custom_values"];
             } else if (user_type === '5') {
 
             }
+
+            if (user_type === '2' || user_type === '5')
+            {
+                //user_type_hidden
+                $('#user_type').attr('name', 'user_type_disabled');
+                $('#user_type_hidden').attr('name', 'user_type');
+            }
+
+
         }
 
         function show_fields() {
@@ -169,6 +179,7 @@ $cv = $this->controller->view_data["custom_values"];
                                         </option>
                                     <?php } ?>
                                 </select>
+                                <input type="hidden" name="user_type_hidden" id="user_type_hidden" value="<?php echo $this->session->userdata('user_type'); ?>" />
                             </div>
 
                             <div class="form-group">
