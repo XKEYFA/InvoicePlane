@@ -40,11 +40,6 @@
       url : "../../../uploads/templates_mce/quote_terms.html",
       description : "Fügt den Textbaustein Angebotsbedingungen hinzu"
     },
-    {
-      title : "Hinweise",
-      url : "../../../uploads/templates_mce/quote_hints.html",
-      description : "Fügt die Angebotshinweise hinzu"
-    },
 	{
       title : "Einleitung",
       url : "../../../uploads/templates_mce/quote_entry.html",
