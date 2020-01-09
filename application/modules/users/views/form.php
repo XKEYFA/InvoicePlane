@@ -20,16 +20,18 @@ $cv = $this->controller->view_data["custom_values"];
                 $('#user_type').attr('disabled', false);
                 $('#user_partner').attr('disabled', false);
             } else if (user_type === '2') {
-
+                // Guest
             } else if (user_type === '3') {
+                // PS Admin
                 $('#user_partner').attr('disabled', false);
             } else if (user_type === '4') {
+                // PS Internal
                 $('#user_partner').attr('disabled', false);
             } else if (user_type === '5') {
-
+                // PS External
             }
 
-            if (user_type === '2' || user_type === '5')
+            if (user_type === '2' || user_type === '5' ||  user_type === '4'  || user_type === '3')
             {
                 //user_type_hidden
                 $('#user_type').attr('name', 'user_type_disabled');
