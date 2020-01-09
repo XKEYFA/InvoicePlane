@@ -132,9 +132,14 @@ function pdf_create(
         }
     }
 
+    $currentDateString = date("Y-m-d_H-i-s");
     // If $stream is true (default) the PDF will be displayed directly in the browser
     // otherwise will be returned as a download
     if ($stream) {
+        if (!is_dir(UPLOADS_ARCHIVE_FOLDER . $filename . '/')) {
+            mkdir(UPLOADS_ARCHIVE_FOLDER . $filename . '/', 0777, true);
+        }
+        $mpdf->Output(UPLOADS_ARCHIVE_FOLDER . $filename . '/' . $filename . '_' . $currentDateString . '.pdf', 'F');
         return $mpdf->Output($filename . '.pdf', 'I');
     } else {
         $mpdf->Output(UPLOADS_TEMP_FOLDER . $filename . '.pdf', 'F');
