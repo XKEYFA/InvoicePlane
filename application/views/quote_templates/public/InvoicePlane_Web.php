@@ -169,7 +169,7 @@
                         <?php foreach ($items as $item) : ?>
                             <tr>
                                 <td><?php _htmlsc($item->item_name); ?></td>
-                                <td><?php echo nl2br(htmlsc($item->item_description)); ?></td>
+                                <td><?php echo $item->item_description; ?></td>
                                 <td class="amount">
                                     <?php echo format_amount($item->item_quantity); ?>
                                     <?php if ($item->item_product_unit) : ?>
