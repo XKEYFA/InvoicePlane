@@ -206,7 +206,7 @@ function generate_invoice_sumex($invoice_id, $stream = true, $client = false)
  * @return string
  * @throws \Mpdf\MpdfException
  */
-function generate_quote_pdf($quote_id, $stream = true, $quote_template = null)
+function generate_quote_pdf($quote_id, $stream = true, $quote_template = null, $confirmation = false)
 {
     $CI = &get_instance();
 
@@ -250,6 +250,7 @@ function generate_quote_pdf($quote_id, $stream = true, $quote_template = null)
         'output_type' => 'pdf',
         'show_item_discounts' => $show_item_discounts,
         'custom_fields' => $custom_fields,
+        'confirmation' => $confirmation
     );
 	
     $html = $CI->load->view('quote_templates/pdf/' . $quote_template, $data, true);

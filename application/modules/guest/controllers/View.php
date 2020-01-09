@@ -228,7 +228,7 @@ class View extends Base_Controller
 
             $this->load->helper('pdf');
 
-            generate_quote_pdf($quote->quote_id, $stream, $quote_template);
+            generate_quote_pdf($quote->quote_id, $stream, $quote_template, false);
         }
     }
 

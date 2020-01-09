@@ -107,7 +107,7 @@ function email_quote(
     $CI->load->helper('template');
     $CI->load->helper('pdf');
 
-    $quote = generate_quote_pdf($quote_id, false, $quote_template);
+    $quote = generate_quote_pdf($quote_id, false, $quote_template, false);
 
     $db_quote = $CI->mdl_quotes->where('ip_quotes.quote_id', $quote_id)->get()->row();
 

@@ -125,9 +125,11 @@ class Quotes extends Guest_Controller
         if (!$quote) {
             show_404();
         } else {
-            generate_quote_pdf($quote_id, $stream, $quote_template);
+            generate_quote_pdf($quote_id, $stream, $quote_template, false);
         }
     }
+
+    
 
     /**
      * @param $quote_id

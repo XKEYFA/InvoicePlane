@@ -201,7 +201,23 @@ class Quotes extends Ps_Extern_Controller
             $this->mdl_quotes->mark_sent($quote_id);
         }
 
-        generate_quote_pdf($quote_id, $stream, $quote_template);
+        generate_quote_pdf($quote_id, $stream, $quote_template, false);
+    }
+
+    /**
+     * @param $quote_id
+     * @param bool $stream
+     * @param null $quote_template
+     */
+    public function generate_confirmation_pdf($quote_id, $stream = true, $quote_template = null)
+    {
+        $this->load->helper('pdf');
+
+        if (get_setting('mark_quotes_sent_pdf') == 1) {
+            $this->mdl_quotes->mark_sent($quote_id);
+        }
+
+        generate_quote_pdf($quote_id, $stream, $quote_template, true);
     }
 
     /**

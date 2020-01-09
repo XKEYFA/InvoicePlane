@@ -113,6 +113,11 @@ $cv = $this->controller->view_data["custom_values"];
             window.open('<?php echo site_url('quotes/generate_pdf/' . $quote_id); ?>', '_blank');
         });
 
+        $('#btn_generate_pdf_conf').click(function () {
+            window.open('<?php echo site_url('quotes/generate_confirmation_pdf/' . $quote_id); ?>', '_blank');
+        });
+
+
         $(document).ready(function () {
             if ($('#quote_discount_percent').val().length > 0) {
                 $('#quote_discount_amount').prop('disabled', true);
@@ -180,6 +185,13 @@ $cv = $this->controller->view_data["custom_values"];
                        data-quote-id="<?php echo $quote_id; ?>">
                         <i class="fa fa-print fa-margin"></i>
                         <?php _trans('download_pdf'); ?>
+                    </a>
+                </li>
+                <li>
+                <a href="#" id="btn_generate_pdf_conf"
+                       data-quote-id="<?php echo $quote_id; ?>">
+                        <i class="fa fa-print fa-margin"></i>
+                        <?php _trans('Auftragsbestätigung Download'); ?>
                     </a>
                 </li>
                 <li>
