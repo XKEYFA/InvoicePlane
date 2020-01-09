@@ -55,7 +55,7 @@ class Ajax extends Ps_Extern_Controller
         foreach ($keywords as $keyword) {
             if ($keyword) {
                 $keyword = strtolower($keyword);
-                $this->mdl_quotes->like("CONCAT_WS('^',LOWER(quote_number),quote_date_created,quote_date_expires,LOWER(client_name),quote_total,user_name)", $keyword);
+                $this->mdl_quotes->like("CONCAT_WS('^',LOWER(quote_number),quote_date_created,quote_date_expires,LOWER(client_name),quote_total,user_name,ip_user_partners.user_partner_name)", $keyword);
             }
         }
 
@@ -84,7 +84,7 @@ class Ajax extends Ps_Extern_Controller
         foreach ($keywords as $keyword) {
             if ($keyword) {
                 $keyword = strtolower($keyword);
-                $this->mdl_clients->like("CONCAT_WS('^',LOWER(client_name),LOWER(client_surname),LOWER(client_email),client_phone,client_active)", $keyword);
+                $this->mdl_clients->like("CONCAT_WS('^',LOWER(client_name),LOWER(client_surname),LOWER(client_email),client_phone,client_active,ip_user_partners.user_partner_name)", $keyword);
             }
         }
 
