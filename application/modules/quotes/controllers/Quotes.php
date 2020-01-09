@@ -111,6 +111,11 @@ class Quotes extends Ps_Extern_Controller
             }
         }
 
+        // Check User ps internal oder ps external, only show quotes of themselve
+        if (isPsExternal($this->session->userdata('user_type')))
+        {
+            $this->mdl_quotes->by_user_partner($this->session->userdata('user_id'));
+        }
         $quote = $this->mdl_quotes->get_by_id($quote_id);
 
          // Check User ps internal oder ps external, only show quotes of themselve
@@ -118,7 +123,6 @@ class Quotes extends Ps_Extern_Controller
          {
              $this->mdl_quotes->by_user($this->session->userdata('user_id'));
          }
-
 
         if (!$quote) {
             show_404();

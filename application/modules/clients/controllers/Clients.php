@@ -112,10 +112,16 @@ class Clients extends Ps_Extern_Controller
         }
 
         if ($id and !$this->input->post('btn_submit')) {
+            // Check User ps internal oder ps external, only show quotes of themselve
+            if (isPsExternal($this->session->userdata('user_type')))
+            {
+                $this->mdl_clients->by_user_partner($this->session->userdata('user_id'));
+            }
+            
             if (!$this->mdl_clients->prep_form($id)) {
                 show_404();
             }
-
+            
             $this->load->model('custom_fields/mdl_client_custom');
             $this->mdl_clients->set_form_value('is_update', true);
 
@@ -194,6 +200,12 @@ class Clients extends Ps_Extern_Controller
         $this->load->model('payments/mdl_payments');
         $this->load->model('custom_fields/mdl_custom_fields');
         $this->load->model('custom_fields/mdl_client_custom');
+
+        // Check User ps internal oder ps external, only show quotes of themselve
+        if (isPsExternal($this->session->userdata('user_type')))
+        {
+            $this->mdl_clients->by_user_partner($this->session->userdata('user_id'));
+        }
 
         $client = $this->mdl_clients
             ->with_total()

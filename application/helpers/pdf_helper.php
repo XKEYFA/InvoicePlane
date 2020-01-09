@@ -217,7 +217,16 @@ function generate_quote_pdf($quote_id, $stream = true, $quote_template = null, $
     $CI->load->helper('country');
     $CI->load->helper('client');
 
+    // Check User ps internal oder ps external, only show quotes of themselve
+    if (isPsExternal($CI->session->userdata('user_type')))
+    {
+        $CI->mdl_quotes->by_user_partner($CI->session->userdata('user_id'));
+    }
     $quote = $CI->mdl_quotes->get_by_id($quote_id);
+
+    if (!$quote) {
+        show_404();
+    }
 
     // Override language with system language
     set_language($quote->client_language);
