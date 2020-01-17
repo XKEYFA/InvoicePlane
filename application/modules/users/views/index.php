@@ -1,11 +1,13 @@
 <div id="headerbar">
     <h1 class="headerbar-title"><?php _trans('users'); ?></h1>
 
+    <?php if (isAllowedForPsAdmin($this->session->userdata('user_type'))) { ?>
     <div class="headerbar-item pull-right">
         <a class="btn btn-sm btn-primary" href="<?php echo site_url('users/form'); ?>">
             <i class="fa fa-plus"></i> <?php _trans('new'); ?>
         </a>
     </div>
+    <?php } ?>
 
     <div class="headerbar-item pull-right">
         <?php echo pager(site_url('users/index'), 'mdl_users'); ?>

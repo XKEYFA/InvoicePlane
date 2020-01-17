@@ -23,6 +23,9 @@ $cv = $this->controller->view_data["custom_values"];
                 // Guest
             } else if (user_type === '3') {
                 // PS Admin
+                $('#user_type').attr('disabled', false);
+                $("#user_type option[value='1']").remove();
+
                 $('#user_partner').attr('disabled', false);
             } else if (user_type === '4') {
                 // PS Internal
@@ -31,7 +34,7 @@ $cv = $this->controller->view_data["custom_values"];
                 // PS External
             }
 
-            if (user_type === '2' || user_type === '5' ||  user_type === '4'  || user_type === '3')
+            if (user_type === '2' || user_type === '5' ||  user_type === '4' )
             {
                 //user_type_hidden
                 $('#user_type').attr('name', 'user_type_disabled');

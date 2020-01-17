@@ -58,9 +58,21 @@ class Users extends Ps_Extern_Controller
         {
             redirect('users/form/' . $this->session->userdata('user_id'));
         }
+        if ((!$id) && !isAllowedForPsAdmin($this->session->userdata('user_type')))
+        {
+            redirect('dashboard/access_denied');
+        }
 
         if ($this->mdl_users->run_validation(($id) ? 'validation_rules_existing' : 'validation_rules')) {
            
+            if ((!$id) && !isAllowedForPsAdmin($this->session->userdata('user_type')))
+            {
+                if (isAllowedForPsAdmin($new_details->user_type))
+                {
+                    redirect('dashboard/access_denied');
+                }
+            }
+
             $id = $this->mdl_users->save($id);
 
             $this->load->model('custom_fields/mdl_user_custom');
@@ -191,6 +203,11 @@ class Users extends Ps_Extern_Controller
      */
     public function delete($id)
     {
+        if ((!$id) && !isAllowedForPsAdmin($this->session->userdata('user_type')))
+        {
+            redirect('dashboard/access_denied');
+        }
+
         if ($id <> 1) {
             $this->mdl_users->delete($id);
         }
