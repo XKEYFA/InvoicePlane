@@ -17,3 +17,4 @@ adminer.php
 /.php_cs.cache
 /doc
 .history
+application/language/German/ip_lang.php
