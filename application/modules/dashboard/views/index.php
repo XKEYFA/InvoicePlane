@@ -171,7 +171,7 @@
                                     <?php echo anchor('clients/view/' . $quote->client_id, htmlsc(format_client($quote))); ?>
                                 </td>
                                 <td>
-                                    <?php echo $quote->user_name; ?>
+                                <?php echo $quote->user_name == "" ? "<i>Benutzer existiert nicht mehr</i>" : $quote->user_name; ?>
                                 </td>
                                 <td class="amount">
                                     <?php echo format_currency($quote->quote_total); ?>

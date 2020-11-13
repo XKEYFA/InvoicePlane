@@ -55,7 +55,7 @@
                     <?php echo $quote->user_partner_name; ?>
                 </td>
                 <td>
-                    <?php echo $quote->user_name; ?>
+                    <?php echo $quote->user_name == "" ? "<i>Benutzer existiert nicht mehr</i>" : $quote->user_name; ?>
                 </td>
                 <td style="text-align: right; padding-right: 25px;">
                     <?php echo format_currency($quote->quote_total); ?>

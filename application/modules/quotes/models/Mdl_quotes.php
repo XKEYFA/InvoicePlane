@@ -100,7 +100,7 @@ class Mdl_Quotes extends Response_Model
     public function default_join()
     {
         $this->db->join('ip_clients', 'ip_clients.client_id = ip_quotes.client_id');
-        $this->db->join('ip_users', 'ip_users.user_id = ip_quotes.user_id');
+        $this->db->join('ip_users', 'ip_users.user_id = ip_quotes.user_id', 'left');
         $this->db->join('ip_quote_amounts', 'ip_quote_amounts.quote_id = ip_quotes.quote_id', 'left');
         $this->db->join('ip_invoices', 'ip_invoices.invoice_id = ip_quotes.invoice_id', 'left');
         $this->db->join('ip_user_partners', 'ip_users.user_partner_id = ip_user_partners.user_partner_id', 'left');

@@ -28,21 +28,37 @@
 	block_formats: 'Paragraph=p;Header 1=h1;Header 2=h2;Header 3=h3', 
 	forced_root_block: false,
 	height:300,
-	toolbar: 'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent code image template',
-	plugins: 'image lists table template',
+	toolbar: 'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent code image pagebreak template',
+	plugins: 'image lists table template pagebreak',
 	images_upload_url: '<?php echo base_url() . "vendor/tinymce/upload.php"; ?>',
   	images_upload_base_path: '<?php echo '../../../uploads/images'; ?>',
   	images_upload_credentials: true,
 	theme_advanced_buttons3_add : "template",
+    pagebreak_split_block: true,
 	templates : [
     {
-      title : "Angebotsbedingungen",
-      url : "../../../uploads/templates_mce/quote_terms.html",
-      description : "Fügt den Textbaustein Angebotsbedingungen hinzu"
+      title : "Angebotsbedingungen All Inklusive",
+      url : "../../../uploads/templates_mce/quote_terms_all_inclusive.html",
+      description : "Fügt den Textbaustein Angebotsbedingungen All Inklusive hinzu"
+    },
+    {
+      title : "Angebotsbedingungen Business",
+      url : "../../../uploads/templates_mce/quote_terms_business.html",
+      description : "Fügt den Textbaustein Angebotsbedingungen All Inklusive hinzu"
+    },
+    {
+      title : "Angebotsbedingungen Telematics",
+      url : "../../../uploads/templates_mce/quote_terms_telematics.html",
+      description : "Fügt den Textbaustein Angebotsbedingungen All Inklusive hinzu"
+    },
+    {
+      title : "Angebotsbedingungen Go!",
+      url : "../../../uploads/templates_mce/quote_terms_go.html",
+      description : "Fügt den Textbaustein Angebotsbedingungen All Inklusive hinzu"
     },
 	{
       title : "Einleitung",
-      url : "../../../uploads/templates_mce/quote_entry.html",
+      url : "../../../uploads/templates_mce/quote_entry_ext.html",
       description : "Fügt das Einleitungstemplate hinzu"
     }
   ]
@@ -53,11 +69,12 @@
 	block_formats: 'Paragraph=p;Header 1=h1;Header 2=h2;Header 3=h3', 
 	forced_root_block: false,
 	height:100,
-	toolbar: 'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent code image',
-	plugins: 'image table',
+	toolbar: 'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent code image pagebreak',
+	plugins: 'image table pagebreak',
 	images_upload_url: '<?php echo base_url() . "vendor/tinymce/upload.php"; ?>',
   	images_upload_base_path: '<?php echo '../../../uploads/images'; ?>',
-  	images_upload_credentials: true
+  	images_upload_credentials: true,
+    pagebreak_split_block: true
 	});
 	
 	tinymce.init(

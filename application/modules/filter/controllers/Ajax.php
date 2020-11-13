@@ -44,6 +44,27 @@ class Ajax extends Ps_Extern_Controller
         $this->load->model('quotes/mdl_quotes');
 
         $query = $this->input->post('filter_query');
+        $status = $this->input->post('status');
+        switch ($status) {
+            case 'draft':
+                $this->mdl_quotes->is_draft();
+                break;
+            case 'sent':
+                $this->mdl_quotes->is_sent();
+                break;
+            case 'viewed':
+                $this->mdl_quotes->is_viewed();
+                break;
+            case 'approved':
+                $this->mdl_quotes->is_approved();
+                break;
+            case 'rejected':
+                $this->mdl_quotes->is_rejected();
+                break;
+            case 'canceled':
+                $this->mdl_quotes->is_canceled();
+                break;
+        }
         $keywords = explode(' ', $query);
 
          // Check User ps internal oder ps external, only show quotes of themselve

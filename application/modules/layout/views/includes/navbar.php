@@ -119,6 +119,7 @@
                     <div class="form-group">
                         <input id="filter" type="text" class="search-query form-control input-sm"
                                placeholder="<?php echo $filter_placeholder; ?>">
+                        <input id="status_" type="hidden" value="<?php echo (isset($status) ? $status : ""); ?>"/>
                     </div>
                 </form>
             <?php } ?>
