@@ -29,7 +29,7 @@
 	forced_root_block: false,
 	height:300,
 	toolbar: 'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent code image pagebreak template',
-	plugins: 'image lists table template pagebreak',
+	plugins: 'lists table template pagebreak', // removed image
 	images_upload_url: '<?php echo base_url() . "vendor/tinymce/upload.php"; ?>',
   	images_upload_base_path: '<?php echo '../../../uploads/images'; ?>',
   	images_upload_credentials: true,
